@@ -13,7 +13,17 @@ package leetcode;
  */
 public class LengthOfLastWord {
     public int lengthOfLastWord(String s) {
-        String[] words = s.split(" ");
-        return words[words.length - 1].length();
+        boolean isPrevLetter = false;
+        int count = 0;
+        for (int i = 0; i < s.length(); i++) {
+            if (s.charAt(i) >= 97 && s.charAt(i) <= 122
+                    || s.charAt(i) >= 65 && s.charAt(i) <= 90) {
+                count = isPrevLetter ? count + 1 : 1;
+                isPrevLetter = true;
+            } else {
+                isPrevLetter = false;
+            }
+        }
+        return count;
     }
 }
