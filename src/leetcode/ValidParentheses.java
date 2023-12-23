@@ -1,7 +1,16 @@
+/*
+ * Copyright (c) 2023 THGEEK.COM. All rights reserved.
+ */
+
 package leetcode;
 
 import java.util.*;
 
+/**
+ * LeetCode 20
+ *
+ * @author Tao Hong
+ */
 public class ValidParentheses {
     public boolean isValid(String s) {
         Stack<Character> parenStack = new Stack<>();
