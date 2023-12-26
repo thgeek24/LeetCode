@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2023 THGEEK.COM. All rights reserved.
+ */
+
 package algorithm;
 
 /**
