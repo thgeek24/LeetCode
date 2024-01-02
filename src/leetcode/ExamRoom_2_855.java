@@ -13,7 +13,7 @@ import java.util.TreeSet;
  * @version 1.0
  * @since 2024/01/02 13:11
  */
-public class ExamRoot_2_855 {
+public class ExamRoom_2_855 {
     // 将端点 p 映射到以 p 为左端点的线段
     private final Map<Integer, int[]> startMap;
     // 将端点 p 映射到以 p 为右端点的线段
@@ -22,7 +22,7 @@ public class ExamRoot_2_855 {
     private final TreeSet<int[]> pq;
     private final int capacity;
 
-    public ExamRoot_2_855(int capacity) {
+    public ExamRoom_2_855(int capacity) {
         this.capacity = capacity;
         startMap = new HashMap<>();
         endMap = new HashMap<>();

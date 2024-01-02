@@ -17,11 +17,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * @since 2023/12/30 11:13
  */
 class ExamRoom_2_855Test {
-    private ExamRoot_2_855 examRoom;
+    private ExamRoom_2_855 examRoom;
 
     @BeforeEach
     void setUp() {
-        examRoom = new ExamRoot_2_855(10);
+        examRoom = new ExamRoom_2_855(10);
     }
 
     @Test
