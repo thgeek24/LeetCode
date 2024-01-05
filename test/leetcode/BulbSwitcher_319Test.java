@@ -35,4 +35,10 @@ class BulbSwitcher_319Test {
         int one = test.bulbSwitch(1);
         assertEquals(1, one);
     }
+
+    @Test
+    void sevenBulbs() {
+        int two = test.bulbSwitch(7);
+        assertEquals(2, two);
+    }
 }

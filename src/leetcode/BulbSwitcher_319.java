@@ -13,6 +13,6 @@ package leetcode;
  */
 public class BulbSwitcher_319 {
     public int bulbSwitch(int n) {
-        return 0;
+        return (int) Math.sqrt(n);
     }
 }
