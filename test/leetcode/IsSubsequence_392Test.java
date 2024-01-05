@@ -7,32 +7,44 @@ package leetcode;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.Arrays;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
+ * Test for {@link IsSubsequence_392}
+ *
  * @author Tao Hong
  * @version 1.0
  * @since 2024/01/05 12:00
  */
 class IsSubsequence_392Test {
-    private IsSubsequence_392 test;
+    private List<IsSubsequence_392> solutions;
 
     @BeforeEach
     void setUp() {
-        test = new IsSubsequence_392();
+        solutions = Arrays.asList(
+                new IsSubsequence_392.Solution1(),
+                new IsSubsequence_392.Solution2());
     }
 
     @Test
     void isSubsequence() {
         String s = "abc";
         String t = "ahbgdc";
-        assertTrue(test.isSubsequence(s, t));
+        for (IsSubsequence_392 solution : solutions) {
+            assertTrue(solution.isSubsequence(s, t));
+        }
     }
 
     @Test
     void isNotSubsequence() {
         String s = "axc";
         String t = "ahbgdc";
-        assertFalse(test.isSubsequence(s, t));
+        for (IsSubsequence_392 solution : solutions) {
+            assertFalse(solution.isSubsequence(s, t));
+        }
     }
 }
