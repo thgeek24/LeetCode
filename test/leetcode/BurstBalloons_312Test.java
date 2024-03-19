@@ -35,5 +35,4 @@ class BurstBalloons_312Test {
         int[] nums = {1, 5};
         assertEquals(10, test.maxCoins(nums));
     }
-
 }
