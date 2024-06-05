@@ -6,6 +6,9 @@ package leetcode;
 
 /**
  * LeetCode 1254
+ * <p>Hint: Clear all islands connected to boundaries, then explore islands withing the boundaries.
+ * Every unvisited island contributes one to the result. Once you find one, explore it completely.
+ * </p>
  *
  * @author Tao Hong
  * @version 1.0
