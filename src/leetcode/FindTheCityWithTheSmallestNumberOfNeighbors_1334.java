@@ -4,10 +4,7 @@
 
 package leetcode;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.Arrays;
 
 /**
  * LeetCode 1334
@@ -18,56 +15,42 @@ import java.util.Set;
  */
 public class FindTheCityWithTheSmallestNumberOfNeighbors_1334 {
     public int findTheCity(int n, int[][] edges, int distanceThreshold) {
-        int[][] distances = new int[n][n];
-        List<Set<Integer>> neighbors = new ArrayList<>();
-        for (int[] distance : distances) {
-            for (int i = 0; i < n; i++) {
-                distance[i] = Integer.MAX_VALUE;
-            }
+        int[][] dist = new int[n][n];
+        final int INF = 10000000;
+        for (int[] row : dist) {
+            Arrays.fill(row, INF);
         }
         for (int i = 0; i < n; i++) {
-            neighbors.add(new HashSet<>());
+            dist[i][i] = 0;
+        }
+        for (int[] edge : edges) {
+            dist[edge[0]][edge[1]] = edge[2];
+            dist[edge[1]][edge[0]] = edge[2];
         }
 
-        for (int[] edge : edges) {
-            int weight = edge[2];
-            if (weight > distanceThreshold) {
-                continue;
-            }
-
-            int from = edge[0];
-            int to = edge[1];
-            boolean updated = false;
-            if (distances[from][to] > weight) {
-                distances[from][to] = weight;
-                distances[to][from] = weight;
-                neighbors.get(from).add(to);
-                neighbors.get(to).add(from);
-                updated = true;
-            }
-
-            if (updated) {
-                for (int i = 0; i < from; i++) {
-                    int newWeight = distances[i][from] + weight;
-                    if (newWeight > distanceThreshold) {
-                        continue;
-                    }
-                    if (distances[i][from] != Integer.MAX_VALUE && distances[i][to] > newWeight) {
-                        distances[i][to] = newWeight;
-                        distances[to][i] = newWeight;
-                        neighbors.get(i).add(to);
-                        neighbors.get(to).add(i);
+        // Floyd-Warshall algorithm
+        for (int k = 0; k < n; k++) {
+            for (int i = 0; i < n; i++) {
+                for (int j = 0; j < n; j++) {
+                    if (dist[i][k] + dist[k][j] < dist[i][j]) {
+                        dist[i][j] = dist[i][k] + dist[k][j];
                     }
                 }
             }
         }
 
         int res = -1;
-        int minNeighborCnt = Integer.MAX_VALUE;
-        for (int i = 0; i < neighbors.size(); i++) {
-            if (neighbors.get(i).size() <= minNeighborCnt) {
-                minNeighborCnt = neighbors.get(i).size();
-                res = Math.max(i, res);
+        int minReachable = n;
+        for (int i = 0; i < n; i++) {
+            int count = 0;
+            for (int j = 0; j < n; j++) {
+                if (i != j && dist[i][j] <= distanceThreshold) {
+                    count++;
+                }
+            }
+            if (count <= minReachable) {
+                minReachable = count;
+                res = i;
             }
         }
 
