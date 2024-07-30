@@ -41,4 +41,10 @@ class RegionsCutBySlashes_959Test {
         String[] grid = {"/\\", "\\/"};
         assertEquals(5, test.regionsBySlashes(grid));
     }
+
+    @Test
+    void equalsThree() {
+        String[] grid = {"//", "/ "};
+        assertEquals(3, test.regionsBySlashes(grid));
+    }
 }
