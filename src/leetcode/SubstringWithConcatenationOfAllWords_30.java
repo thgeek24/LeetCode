@@ -5,9 +5,9 @@
 package leetcode;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.HashMap;
 
 /**
  * LeetCode 30
@@ -18,60 +18,34 @@ import java.util.Map;
  */
 public class SubstringWithConcatenationOfAllWords_30 {
     public List<Integer> findSubstring(String s, String[] words) {
-        final Map<String, Integer> finalWordStats = new HashMap<>();
-        for (String word : words) {
-            int count = finalWordStats.getOrDefault(word, 0);
-            finalWordStats.put(word, count + 1);
-        }
+        List<Integer> ans = new ArrayList<>();
+        int n = s.length();
+        int m = words.length;
+        int w = words[0].length();
 
-        int wordLen = words[0].length();
-        int left = 0;
-        int right = 0;
-        int remaining = words.length;
-        List<Integer> res = new ArrayList<>();
+        Map<String, Integer> map = new HashMap<>();
+        for (String x : words)
+            map.put(x, map.getOrDefault(x, 0) + 1);
 
-        Map<String, Integer> wordStats = new HashMap<>();
-        recoverMap(wordStats, finalWordStats);
+        for (int i = 0; i < w; i++) {
+            HashMap<String, Integer> temp = new HashMap<>();
+            int count = 0;
+            for (int j = i, k = i; j + w <= n; j = j + w) {
+                String word = s.substring(j, j + w);
+                temp.put(word, temp.getOrDefault(word, 0) + 1);
+                count++;
 
-        while (right < s.length() && right + wordLen <= s.length()) {
-            String rightWord = s.substring(right, right + wordLen);
-            if (wordStats.containsKey(rightWord) && wordStats.get(rightWord) > 0) {
-                wordStats.put(rightWord, wordStats.get(rightWord) - 1);
-                remaining--;
-                right += wordLen;
-            } else if (wordStats.containsKey(rightWord)) {
-                // recover wordStats & remaining
-                wordStats.put(rightWord, wordStats.get(rightWord) - 1);
-                // move right
-                right += wordLen;
-            } else {
-                // recover wordStats & remaining
-                recoverMap(wordStats, finalWordStats);
-                remaining = words.length;
-                // move right & left
-                right++;
-                left = right;
-            }
-
-            if (remaining == 0) {
-                int maxLeft = right - wordLen * words.length;
-                while (left < maxLeft) {
-                    String leftWord = s.substring(left, left + wordLen);
-                    if (wordStats.containsKey(leftWord) && wordStats.get(leftWord) >= 0) {
-                        remaining++;
+                if (count == m) {
+                    if (map.equals(temp)) {
+                        ans.add(k);
                     }
-                    wordStats.put(leftWord, wordStats.get(leftWord) + 1);
-                    left += wordLen;
+                    String remove = s.substring(k, k + w);
+                    temp.computeIfPresent(remove, (a, b) -> (b > 1) ? b - 1 : null);
+                    count--;
+                    k = k + w;
                 }
-                if (remaining == 0) {
-                    res.add(left);
-                }
-            }
-        }
-        return res;
-    }
-
-    private void recoverMap(Map<String, Integer> alteredMap, Map<String, Integer> originalMap) {
-        alteredMap.putAll(originalMap);
-    }
+            }//inner for loop
+        }//outer for loop
+        return ans;
+    }//method
 }
