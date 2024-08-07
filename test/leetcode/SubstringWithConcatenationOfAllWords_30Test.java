@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import support.ArrayUtils;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -64,6 +65,7 @@ class SubstringWithConcatenationOfAllWords_30Test {
         String s = "aaaaaaaaaaaaaa";
         String[] words = {"aa", "aa"};
         List<Integer> expected = ArrayUtils.convert(new Integer[]{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10});
-        assertEquals(expected, test.findSubstring(s, words));
+        List<Integer> actual = test.findSubstring(s, words).stream().sorted().collect(Collectors.toList());
+        assertEquals(expected, actual);
     }
 }
