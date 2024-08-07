@@ -58,4 +58,12 @@ class SubstringWithConcatenationOfAllWords_30Test {
         List<Integer> expected = ArrayUtils.convert(new Integer[]{8});
         assertEquals(expected, test.findSubstring(s, words));
     }
+
+    @Test
+    void test5() {
+        String s = "aaaaaaaaaaaaaa";
+        String[] words = {"aa", "aa"};
+        List<Integer> expected = ArrayUtils.convert(new Integer[]{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10});
+        assertEquals(expected, test.findSubstring(s, words));
+    }
 }
