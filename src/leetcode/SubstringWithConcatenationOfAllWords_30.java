@@ -18,34 +18,54 @@ import java.util.HashMap;
  */
 public class SubstringWithConcatenationOfAllWords_30 {
     public List<Integer> findSubstring(String s, String[] words) {
-        List<Integer> ans = new ArrayList<>();
-        int n = s.length();
-        int m = words.length;
-        int w = words[0].length();
+        List<Integer> result = new ArrayList<>();
 
-        Map<String, Integer> map = new HashMap<>();
-        for (String x : words)
-            map.put(x, map.getOrDefault(x, 0) + 1);
+        int wordLength = words[0].length();
+        int wordCount = words.length;
 
-        for (int i = 0; i < w; i++) {
-            HashMap<String, Integer> temp = new HashMap<>();
+        // Create a frequency map of the words
+        Map<String, Integer> wordMap = new HashMap<>();
+        for (String word : words) {
+            wordMap.put(word, wordMap.getOrDefault(word, 0) + 1);
+        }
+
+        // We only need to go through wordLength different starting points
+        for (int i = 0; i < wordLength; i++) {
+            int left = i;
+            int right = i;
             int count = 0;
-            for (int j = i, k = i; j + w <= n; j = j + w) {
-                String word = s.substring(j, j + w);
-                temp.put(word, temp.getOrDefault(word, 0) + 1);
-                count++;
+            Map<String, Integer> seenMap = new HashMap<>();
 
-                if (count == m) {
-                    if (map.equals(temp)) {
-                        ans.add(k);
+            while (right + wordLength <= s.length()) {
+                // Get the next word from the right end
+                String word = s.substring(right, right + wordLength);
+                right += wordLength;
+
+                if (wordMap.containsKey(word)) {
+                    seenMap.put(word, seenMap.getOrDefault(word, 0) + 1);
+                    count++;
+
+                    // If there are more words than needed, slide the window
+                    while (seenMap.get(word) > wordMap.get(word)) {
+                        String leftWord = s.substring(left, left + wordLength);
+                        seenMap.put(leftWord, seenMap.get(leftWord) - 1);
+                        left += wordLength;
+                        count--;
                     }
-                    String remove = s.substring(k, k + w);
-                    temp.computeIfPresent(remove, (a, b) -> (b > 1) ? b - 1 : null);
-                    count--;
-                    k = k + w;
+
+                    // If the window contains all the words, we found a valid start
+                    if (count == wordCount) {
+                        result.add(left);
+                    }
+                } else {
+                    // Reset the window if the word is not in the word list
+                    seenMap.clear();
+                    count = 0;
+                    left = right;
                 }
-            }//inner for loop
-        }//outer for loop
-        return ans;
-    }//method
+            }
+        }
+
+        return result;
+    }
 }
