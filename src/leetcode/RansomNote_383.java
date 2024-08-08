@@ -9,7 +9,7 @@ import java.util.Map;
 
 /**
  * LeetCode 383
- * Level: Easy
+ * Difficulty: Easy
  *
  * @author Tao Hong
  * @version 1.0
