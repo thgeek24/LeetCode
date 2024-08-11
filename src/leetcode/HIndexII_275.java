@@ -16,19 +16,17 @@ public class HIndexII_275 {
         int len = citations.length;
         int left = 0;
         int right = len - 1;
-        while (left < right) {
+        while (left <= right) {
             int mid = left + (right - left) / 2;
             int papers = len - mid;
-            if (papers >= citations[mid]) {
-                left = mid + 1;
+            if (citations[mid] == papers) { // h-index found
+                return citations[mid];
+            } else if (citations[mid] < papers) {
+                left = mid + 1; // move right to find a larger h-index
             } else {
-                right = mid;
+                right = mid - 1; // move left to find the correct h-index
             }
         }
-        int papers = len - left;
-        if (papers >= citations[left]) {
-            return papers;
-        }
-        return Math.min(papers + 1, len);
+        return len - left; // Adjusted h-index after exiting loop
     }
 }
