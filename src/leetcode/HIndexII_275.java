@@ -14,10 +14,6 @@ package leetcode;
 public class HIndexII_275 {
     public int hIndex(int[] citations) {
         int len = citations.length;
-        if (len == 1) {
-            return citations[0] > 0 ? 1 : 0;
-        }
-
         int left = 0;
         int right = len - 1;
         while (left < right) {
@@ -31,8 +27,8 @@ public class HIndexII_275 {
         }
         int papers = len - left;
         if (papers >= citations[left]) {
-            return citations[left];
+            return papers;
         }
-        return citations[left - 1];
+        return Math.min(papers + 1, len);
     }
 }
