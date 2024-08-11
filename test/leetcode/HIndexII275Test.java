@@ -43,6 +43,12 @@ class HIndexII275Test {
     }
 
     @Test
+    void equalsZero3() {
+        int[] citations = {0, 3, 4};
+        assertEquals(2, test.hIndex(citations));
+    }
+
+    @Test
     void equalsOne() {
         int[] citations = {1};
         assertEquals(1, test.hIndex(citations));

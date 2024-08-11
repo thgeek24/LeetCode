@@ -20,7 +20,7 @@ public class HIndexII_275 {
             int mid = left + (right - left) / 2;
             int papers = len - mid;
             if (citations[mid] == papers) { // h-index found
-                return citations[mid];
+                return papers;
             } else if (citations[mid] < papers) {
                 left = mid + 1; // move right to find a larger h-index
             } else {
