@@ -4,8 +4,6 @@
 
 package leetcode;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Random;
 
 /**
@@ -17,32 +15,34 @@ import java.util.Random;
  */
 public class RandomPickWIthWeight_528 {
     public static class Solution {
-        private final int[] w;
-        private int sum;
-        private Map<Integer, Integer> map;
+        private final int[] prefixSums;
+        private final int sum;
+        private final Random random;
 
         public Solution(int[] w) {
-            this.w = w;
-            this.map = new HashMap<>();
-            for (int num : w) {
-                sum += num;
-                map.put(num, map.getOrDefault(num, 0) + num);
+            this.random = new Random();
+            this.prefixSums = new int[w.length];
+            prefixSums[0] = w[0];
+            for (int i = 1; i < w.length; i++) {
+                prefixSums[i] = prefixSums[i - 1] + w[i];
             }
+            this.sum = prefixSums[w.length - 1];
         }
 
         public int pickIndex() {
-            Random random = new Random();
-            int res = 0;
-            for (int i = 0; i < w.length; i++) {
-                int remaining = sum - map.get(w[i]);
-                if (remaining == 0) {
-                    return i;
-                }
-                if (random.nextInt(remaining) == 0) {
-                    res = i;
+            int target = random.nextInt(sum) + 1;
+
+            int left = 0;
+            int right = prefixSums.length - 1;
+            while (left < right) {
+                int mid = left + (right - left) / 2;
+                if (prefixSums[mid] < target) {
+                    left = mid + 1;
+                } else {
+                    right = mid;
                 }
             }
-            return res;
+            return left;
         }
     }
 }
