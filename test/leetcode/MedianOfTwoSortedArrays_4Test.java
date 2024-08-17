@@ -37,4 +37,12 @@ class MedianOfTwoSortedArrays_4Test {
         double actual = test.findMedianSortedArrays(nums1, nums2);
         assertEquals(2.5, actual);
     }
+
+    @Test
+    void equalsPointFive() {
+        int[] nums1 = {0};
+        int[] nums2 = {1};
+        double actual = test.findMedianSortedArrays(nums1, nums2);
+        assertEquals(0.5, actual);
+    }
 }
