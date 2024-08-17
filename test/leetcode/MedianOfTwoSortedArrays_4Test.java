@@ -10,6 +10,8 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
+ * Test for {@link MedianOfTwoSortedArrays_4}
+ *
  * @author Tao Hong
  * @version 1.0
  * @since 2024/08/17 09:15
