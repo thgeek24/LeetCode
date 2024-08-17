@@ -1,0 +1,40 @@
+/*
+ * Copyright (c) 2024 THGEEK.COM. All rights reserved.
+ */
+
+package leetcode;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+/**
+ * @author Tao Hong
+ * @version 1.0
+ * @since 2024/08/17 09:15
+ */
+class MedianOfTwoSortedArrays_4Test {
+    private MedianOfTwoSortedArrays_4 test;
+
+    @BeforeEach
+    void setUp() {
+        test = new MedianOfTwoSortedArrays_4();
+    }
+
+    @Test
+    void equalsTwo() {
+        int[] nums1 = {1, 3};
+        int[] nums2 = {2};
+        double actual = test.findMedianSortedArrays(nums1, nums2);
+        assertEquals(2.0, actual);
+    }
+
+    @Test
+    void equalsTwoPointFive() {
+        int[] nums1 = {1, 2};
+        int[] nums2 = {3, 4};
+        double actual = test.findMedianSortedArrays(nums1, nums2);
+        assertEquals(2.5, actual);
+    }
+}
