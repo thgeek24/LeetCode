@@ -4,8 +4,6 @@
 
 package leetcode;
 
-import java.util.Arrays;
-
 /**
  * LeetCode 45
  *
@@ -15,15 +13,26 @@ import java.util.Arrays;
  */
 public class JumpGameII_45 {
     public int jump(int[] nums) {
-        int[] dp = new int[nums.length];
-        Arrays.fill(dp, Integer.MAX_VALUE);
-        dp[0] = 0;
-        for (int i = 0; i < nums.length; i++) {
-            int steps = nums[i];
-            for (int j = 1; j <= steps && j + i < nums.length; j++) {
-                dp[i + j] = Math.min(dp[i + j], dp[i] + 1);
+        int jumps = 0;
+        int currentEnd = 0;
+        int farthest = 0;
+
+        for (int i = 0; i < nums.length - 1; i++) {
+            // Update the farthest point that can be reached
+            farthest = Math.max(farthest, i + nums[i]);
+
+            // If we've reached the end of the current jump range, we need to jump
+            if (i == currentEnd) {
+                jumps++;
+                currentEnd = farthest;
+
+                // If the farthest point can reach the end, break early
+                if (currentEnd >= nums.length - 1) {
+                    break;
+                }
             }
         }
-        return dp[nums.length - 1];
+
+        return jumps;
     }
 }
