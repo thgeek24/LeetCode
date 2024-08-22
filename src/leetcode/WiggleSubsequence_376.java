@@ -13,43 +13,19 @@ package leetcode;
  */
 public class WiggleSubsequence_376 {
     public int wiggleMaxLength(int[] nums) {
-        int[][] numDp = new int[nums.length][2];
-        int[][] lenDp = new int[nums.length][2];
-        numDp[0][0] = nums[0];
-        numDp[0][1] = nums[0];
-        lenDp[0][0] = 1;
-        lenDp[0][1] = 1;
-        for (int i = 1; i < nums.length; i++) {
-            // Determine the last increasing number
-            boolean flag1 = false;
-            if (nums[i] > numDp[i - 1][1]) {
-                int newLen = lenDp[i - 1][1] + 1;
-                if (newLen > lenDp[i - 1][0]) {
-                    numDp[i][0] = nums[i];
-                    lenDp[i][0] = newLen;
-                    flag1 = true;
-                }
-            }
-            if (!flag1) {
-                numDp[i][0] = Math.max(nums[i], numDp[i - 1][0]);
-                lenDp[i][0] = lenDp[i - 1][0];
-            }
+        if (nums.length < 2) {
+            return nums.length;
+        }
 
-            // Determine the last decreasing number
-            boolean flag2 = false;
-            if (nums[i] < numDp[i - 1][0]) {
-                int newLen = lenDp[i - 1][0] + 1;
-                if (newLen > lenDp[i - 1][1]) {
-                    numDp[i][1] = nums[i];
-                    lenDp[i][1] = newLen;
-                    flag2 = true;
-                }
-            }
-            if (!flag2) {
-                numDp[i][1] = Math.min(nums[i], numDp[i - 1][1]);
-                lenDp[i][1] = lenDp[i - 1][1];
+        int up = 1, down = 1; // Initialize the lengths
+        for (int i = 1; i < nums.length; i++) {
+            if (nums[i] > nums[i - 1]) {
+                up = down + 1; // If current element is greater, update up
+            } else if (nums[i] < nums[i - 1]) {
+                down = up + 1; // If current element is smaller, update down
             }
         }
-        return Math.max(lenDp[nums.length - 1][0], lenDp[nums.length - 1][1]);
+
+        return Math.max(up, down); // The answer is the maximum of up and down
     }
 }
