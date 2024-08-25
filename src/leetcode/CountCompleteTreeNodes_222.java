@@ -12,20 +12,29 @@ package leetcode;
  * @since 2024/08/24 18:30
  */
 public class CountCompleteTreeNodes_222 {
-    private int nodeCount;
-
     public int countNodes(TreeNode root) {
-        nodeCount = 0;
-        countNodesAux(root);
-        return nodeCount;
+        if (root == null) {
+            return 0;
+        }
+
+        int leftHeight = getHeight(root.left);
+        int rightHeight = getHeight(root.right);
+
+        if (leftHeight == rightHeight) {
+            // Left subtree is a perfect binary tree
+            return (1 << leftHeight) + countNodes(root.right);
+        } else {
+            // Right subtree is a perfect binary tree
+            return (1 << rightHeight) + countNodes(root.left);
+        }
     }
 
-    private void countNodesAux(TreeNode root) {
-        if (root == null) {
-            return;
+    private int getHeight(TreeNode node) {
+        int height = 0;
+        while (node != null) {
+            height++;
+            node = node.left;
         }
-        nodeCount++;
-        countNodesAux(root.left);
-        countNodesAux(root.right);
+        return height;
     }
 }
