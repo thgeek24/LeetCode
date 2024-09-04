@@ -7,16 +7,18 @@
  */
 var mergeAlternately = function (word1, word2) {
     let res = '';
-    const len1 = word1.length;
-    const len2 = word2.length;
-    const len = Math.min(len1, len2);
-    for (let i = 0; i < len; i++) {
-        res += word1[i] + word2[i];
+    let i = 0;
+
+    while (i < word1.length || i < word2.length) {
+        if (i < word1.length) {
+            res += word1[i];
+        }
+        if (i < word2.length) {
+            res += word2[i];
+        }
+        i++;
     }
-    const remaining = len1 > len2 ? word1 : word2;
-    for (let i = len; i < remaining.length; i++) {
-        res += remaining[i];
-    }
+
     return res;
 };
 
