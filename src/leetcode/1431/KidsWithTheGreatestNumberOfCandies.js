@@ -1,4 +1,6 @@
 /**
+ * LeetCode 1431
+ *
  * @param {number[]} candies
  * @param {number} extraCandies
  * @return {boolean[]}
