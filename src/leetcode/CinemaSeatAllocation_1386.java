@@ -18,44 +18,37 @@ import java.util.Set;
  */
 public class CinemaSeatAllocation_1386 {
     public int maxNumberOfFamilies(int n, int[][] reservedSeats) {
-        Map<Integer, Set<Integer>> map = new HashMap<>();
-        for (int[] reserved : reservedSeats) {
-            int row = reserved[0];
-            Set<Integer> seats = map.getOrDefault(row, new HashSet<>());
-            seats.add(reserved[1]);
-            map.put(row, seats);
-        }
-        int res = 0;
-        for (int i = 1; i <= n; i++) {
-            res += countGroups(map.get(i));
-        }
-        return res;
-    }
+        Map<Integer, Set<Integer>> reservedMap = new HashMap<>();
 
-    private int countGroups(Set<Integer> reservedSeats) {
-        if (reservedSeats == null || reservedSeats.isEmpty()) {
-            return 2;
+        for (int[] seat : reservedSeats) {
+            int row = seat[0];
+            int col = seat[1];
+            reservedMap.putIfAbsent(row, new HashSet<>());
+            reservedMap.get(row).add(col);
         }
-        int groups = 0;
-        if (!reservedSeats.contains(2) &&
-                !reservedSeats.contains(3) &&
-                !reservedSeats.contains(4) &&
-                !reservedSeats.contains(5)) {
-            groups++;
+
+        int maxFamilies = 0;
+
+        for (int row : reservedMap.keySet()) {
+            Set<Integer> reservedCols = reservedMap.get(row);
+
+            boolean leftBlock = !reservedCols.contains(2) && !reservedCols.contains(3) &&
+                    !reservedCols.contains(4) && !reservedCols.contains(5);
+            boolean middleBlock = !reservedCols.contains(4) && !reservedCols.contains(5) &&
+                    !reservedCols.contains(6) && !reservedCols.contains(7);
+            boolean rightBlock = !reservedCols.contains(6) && !reservedCols.contains(7) &&
+                    !reservedCols.contains(8) && !reservedCols.contains(9);
+
+            if (leftBlock && rightBlock) {
+                maxFamilies += 2;
+            } else if (leftBlock || middleBlock || rightBlock) {
+                maxFamilies += 1;
+            }
         }
-        if (!reservedSeats.contains(6) &&
-                !reservedSeats.contains(7) &&
-                !reservedSeats.contains(8) &&
-                !reservedSeats.contains(9)) {
-            groups++;
-        }
-        if (groups == 0 &&
-                !reservedSeats.contains(4) &&
-                !reservedSeats.contains(5) &&
-                !reservedSeats.contains(6) &&
-                !reservedSeats.contains(7)) {
-            groups++;
-        }
-        return groups;
+
+        // Rows without any reserved seats can seat 2 families
+        maxFamilies += 2 * (n - reservedMap.size());
+
+        return maxFamilies;
     }
 }
