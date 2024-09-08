@@ -18,37 +18,36 @@ import java.util.Set;
  */
 public class CinemaSeatAllocation_1386 {
     public int maxNumberOfFamilies(int n, int[][] reservedSeats) {
-        Map<Integer, Set<Integer>> reservedMap = new HashMap<>();
-
-        for (int[] seat : reservedSeats) {
-            int row = seat[0];
-            int col = seat[1];
-            reservedMap.putIfAbsent(row, new HashSet<>());
-            reservedMap.get(row).add(col);
+        Map<Integer, Set<Integer>> map = new HashMap<>();
+        for (int[] reserved : reservedSeats) {
+            int row = reserved[0];
+            int col = reserved[1];
+            map.putIfAbsent(row, new HashSet<>());
+            map.get(row).add(col);
         }
 
         int maxFamilies = 0;
-
-        for (int row : reservedMap.keySet()) {
-            Set<Integer> reservedCols = reservedMap.get(row);
-
-            boolean leftBlock = !reservedCols.contains(2) && !reservedCols.contains(3) &&
-                    !reservedCols.contains(4) && !reservedCols.contains(5);
-            boolean middleBlock = !reservedCols.contains(4) && !reservedCols.contains(5) &&
-                    !reservedCols.contains(6) && !reservedCols.contains(7);
-            boolean rightBlock = !reservedCols.contains(6) && !reservedCols.contains(7) &&
-                    !reservedCols.contains(8) && !reservedCols.contains(9);
-
+        for (Set<Integer> reservedCols : map.values()) {
+            boolean leftBlock = !reservedCols.contains(2) &&
+                    !reservedCols.contains(3) &&
+                    !reservedCols.contains(4) &&
+                    !reservedCols.contains(5);
+            boolean middleBlock = !reservedCols.contains(4) &&
+                    !reservedCols.contains(5) &&
+                    !reservedCols.contains(6) &&
+                    !reservedCols.contains(7);
+            boolean rightBlock = !reservedCols.contains(6) &&
+                    !reservedCols.contains(7) &&
+                    !reservedCols.contains(8) &&
+                    !reservedCols.contains(9);
             if (leftBlock && rightBlock) {
                 maxFamilies += 2;
             } else if (leftBlock || middleBlock || rightBlock) {
-                maxFamilies += 1;
+                maxFamilies++;
             }
         }
 
-        // Rows without any reserved seats can seat 2 families
-        maxFamilies += 2 * (n - reservedMap.size());
-
+        maxFamilies += 2 * (n - map.size());
         return maxFamilies;
     }
 }
