@@ -4,6 +4,8 @@
 
 package leetcode.m767;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.PriorityQueue;
 
 /**
@@ -26,33 +28,33 @@ public class ReorganizeString {
             }
         }
 
-        int[] res = new int[s.length()];
+        List<Character> ans = new ArrayList<>();
         while (!queue.isEmpty()) {
-            int[] item = queue.poll();
-            if (item[1] > 0) {
-                int j = 0;
-                while (j < res.length && item[1] > 0) {
-                    if (res[j] == 0) {
-                        if (j == 0) {
-                            res[j] = item[0] + 'a';
-                            item[1]--;
-                        } else if (res[j - 1] != item[0] + 'a') {
-                            res[j] = item[0] + 'a';
-                            item[1]--;
-                        }
-                    }
-                    j++;
-                }
-                if (item[1] > 0) {
-                    return "";
+            int[] first = queue.poll();
+            int[] second = !queue.isEmpty() ? queue.poll() : null;
+
+            int firstChar = first[0] + 'a';
+            if (!ans.isEmpty() && firstChar == ans.get(ans.size() - 1)) {
+                return "";
+            }
+            ans.add((char) firstChar);
+            first[1]--;
+            if (first[1] > 0) {
+                queue.offer(first);
+            }
+
+            if (second != null) {
+                ans.add((char) (second[0] + 'a'));
+                second[1]--;
+                if (second[1] > 0) {
+                    queue.offer(second);
                 }
             }
         }
 
         StringBuilder sb = new StringBuilder();
-        for (int item : res) {
-            sb.append((char) item);
-
+        for (Character an : ans) {
+            sb.append(an);
         }
         return sb.toString();
     }
