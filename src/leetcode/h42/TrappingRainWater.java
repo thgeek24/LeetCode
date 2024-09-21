@@ -2,7 +2,7 @@
  * Copyright (c) 2024 THGEEK.COM. All rights reserved.
  */
 
-package leetcode;
+package leetcode.h42;
 
 /**
  * LeetCode 42
@@ -11,7 +11,7 @@ package leetcode;
  * @version 1.0
  * @since 2024/04/03 11:06
  */
-public class TrappingRainWater_42 {
+public class TrappingRainWater {
     public int trap(int[] height) {
         int left = 0;
         int right = height.length - 1;
