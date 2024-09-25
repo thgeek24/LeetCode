@@ -10,9 +10,9 @@ package leetcode;
  * @author LeetCode
  */
 public class ListNode {
-    int val;
+    public int val;
 
-    ListNode next;
+    public ListNode next;
 
     public int getVal() {
         return val;

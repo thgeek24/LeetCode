@@ -2,7 +2,7 @@
  * Copyright (c) 2024 THGEEK.COM. All rights reserved.
  */
 
-package leetcode;
+package leetcode.h76;
 
 import java.util.HashMap;
 import java.util.Map;
