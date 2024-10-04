@@ -41,4 +41,12 @@ class PartitionListTest {
         ListNode expected = ListNodeGenerator.getListNode(new int[]{1, 2});
         assertEquals(expected, test.partition(head, x));
     }
+
+    @Test
+    void test3() {
+        ListNode head = ListNodeGenerator.getListNode(new int[]{1, 4, 3, 0, 2, 5, 2});
+        int x = 3;
+        ListNode expected = ListNodeGenerator.getListNode(new int[]{1, 0, 2, 2, 4, 3, 5});
+        assertEquals(expected, test.partition(head, x));
+    }
 }

@@ -15,42 +15,27 @@ import leetcode.ListNode;
  */
 public class PartitionList {
     public ListNode partition(ListNode head, int x) {
-        if (head == null || head.next == null) {
-            return head;
+        ListNode before = new ListNode(0);  // Stores nodes less than x
+        ListNode after = new ListNode(0);   // Stores nodes greater than or equal to x
+
+        // Pointers for the two lists
+        ListNode beforeHead = before;
+        ListNode afterHead = after;
+
+        // Traverse the original list
+        while (head != null) {
+            if (head.val < x) {
+                before.next = head;   // Add to the "before" list
+                before = before.next;
+            } else {
+                after.next = head;    // Add to the "after" list
+                after = after.next;
+            }
+            head = head.next;
         }
 
-        ListNode dummy = new ListNode(Integer.MIN_VALUE);
-        dummy.next = head;
-        ListNode fast = head;
-        ListNode slow = head;
-        ListNode prevFast = null;
-        ListNode prevSlow = null;
-        while (fast != null) {
-            if (fast.val < x) {
-                while (slow.val < x && slow != fast) {
-                    prevSlow = slow;
-                    slow = slow.next;
-                }
-                if (prevFast == null) {
-                    prevFast = fast;
-                    fast = fast.next;
-                    continue;
-                }
-                prevFast.next = fast.next;
-                if (prevSlow == null) {
-                    dummy.next = fast;
-                } else {
-                    prevSlow.next = fast;
-                }
-                fast.next = slow;
-                prevSlow = fast;
-                fast = prevFast.next;
-            }
-            if (fast != null) {
-                prevFast = fast;
-                fast = fast.next;
-            }
-        }
-        return dummy.next;
+        before.next = afterHead.next;  // Connect the two lists
+
+        return beforeHead.next;  // Return the head of the modified list
     }
 }
