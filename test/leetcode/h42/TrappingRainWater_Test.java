@@ -2,7 +2,7 @@
  * Copyright (c) 2024 THGEEK.COM. All rights reserved.
  */
 
-package leetcode;
+package leetcode.h42;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,18 +10,18 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Test for {@link TrappingRainWater_42}
+ * Test for {@link TrappingRainWater}
  *
  * @author Tao Hong
  * @version 1.0
  * @since 2024/04/03 11:06
  */
-class TrappingRainWater_42Test {
-    private TrappingRainWater_42 test;
+class TrappingRainWater_Test {
+    private TrappingRainWater test;
 
     @BeforeEach
     void setUp() {
-        test = new TrappingRainWater_42();
+        test = new TrappingRainWater();
     }
 
     @Test
