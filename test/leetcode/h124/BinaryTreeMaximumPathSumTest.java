@@ -39,4 +39,11 @@ class BinaryTreeMaximumPathSumTest {
         int expected = 42;
         assertEquals(expected, test.maxPathSum(root));
     }
+
+    @Test
+    void equalsTwo() {
+        TreeNode root = new TreeNode(2, new TreeNode(-1), null);
+        int expected = 2;
+        assertEquals(expected, test.maxPathSum(root));
+    }
 }
