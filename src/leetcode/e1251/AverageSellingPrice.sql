@@ -1,10 +1,12 @@
-select product_id, round(sum(price * total) / sum(total), 2) as average_price
-
-from (select p.product_id, p.start_date, p.end_date, p.price, sum(units) as total
-      from Prices p
-               left join UnitsSold u
-                         on p.product_id = u.product_id
-      where u.purchase_date >= p.start_date && u.purchase_date <= p.end_date
-      group by start_date) as t
-
-group by product_id
+SELECT
+    p.product_id,
+    IFNULL(ROUND(SUM(p.price * u.units) / SUM(u.units), 2), 0) AS average_price
+FROM
+    Prices p
+        LEFT JOIN
+    UnitsSold u
+    ON
+        p.product_id = u.product_id
+            AND u.purchase_date BETWEEN p.start_date AND p.end_date
+GROUP BY
+    p.product_id;
