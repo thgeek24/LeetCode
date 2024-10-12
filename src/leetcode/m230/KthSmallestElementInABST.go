@@ -25,6 +25,7 @@ func kthSmallestHelper(root *TreeNode, k int, count *Count) {
 		return
 	}
 
+	kthSmallestHelper(root.Left, k, count)
 	count.Val++
 	if count.Val == k {
 		count.Res = root.Val
@@ -32,7 +33,5 @@ func kthSmallestHelper(root *TreeNode, k int, count *Count) {
 	} else if count.Val > k {
 		return
 	}
-
-	kthSmallestHelper(root.Left, k, count)
 	kthSmallestHelper(root.Right, k, count)
 }
