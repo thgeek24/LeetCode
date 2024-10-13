@@ -26,7 +26,7 @@ public class SnakesAndLadders {
         init(board);
 
         Queue<Integer> queue = new LinkedList<>();
-        queue.add(0);
+        queue.add(1);
         int moves = 0;
         while (!queue.isEmpty()) {
             int roundSize = queue.size();
@@ -36,25 +36,25 @@ public class SnakesAndLadders {
                 if (seen.contains(curr)) {
                     continue;
                 }
-                int lastCellIndex = Integer.MIN_VALUE;
+                int lastCell = Integer.MIN_VALUE;
                 for (int i = 1; i <= 6; i++) {
                     int _curr = curr + i;
                     if (_curr == path.size() - 1) {
                         return moves;
                     }
-                    int nextLabel = path.get(_curr);
-                    if (nextLabel == path.size()) {
+                    int next = path.get(_curr);
+                    if (next == path.size() - 1) {
                         return moves;
-                    } else if (nextLabel != -1) {
+                    } else if (next != -1) {
                         seen.add(curr);
-                        queue.offer(nextLabel - 1);
+                        queue.offer(next);
                     } else {
-                        lastCellIndex = Math.max(lastCellIndex, _curr);
+                        lastCell = Math.max(lastCell, _curr);
                     }
                 }
-                if (lastCellIndex != Integer.MIN_VALUE) {
+                if (lastCell != Integer.MIN_VALUE) {
                     seen.add(curr);
-                    queue.offer(lastCellIndex);
+                    queue.offer(lastCell);
                 }
             }
         }
@@ -63,6 +63,7 @@ public class SnakesAndLadders {
     }
 
     private void init(int[][] board) {
+        path.add(0);
         int len = board.length;
 
         boolean leftToRight = true;
