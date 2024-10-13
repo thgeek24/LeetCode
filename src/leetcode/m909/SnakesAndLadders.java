@@ -36,9 +36,10 @@ public class SnakesAndLadders {
                 if (seen.contains(curr)) {
                     continue;
                 }
+                int lastCellIndex = Integer.MIN_VALUE;
                 for (int i = 1; i <= 6; i++) {
                     int _curr = curr + i;
-                    if (_curr >= path.size() - 1) {
+                    if (_curr == path.size() - 1) {
                         return moves;
                     }
                     int nextLabel = path.get(_curr);
@@ -47,10 +48,13 @@ public class SnakesAndLadders {
                     } else if (nextLabel != -1) {
                         seen.add(curr);
                         queue.offer(nextLabel - 1);
-                    } else if (i == 6) {
-                        seen.add(curr);
-                        queue.offer(_curr);
+                    } else {
+                        lastCellIndex = Math.max(lastCellIndex, _curr);
                     }
+                }
+                if (lastCellIndex != Integer.MIN_VALUE) {
+                    seen.add(curr);
+                    queue.offer(lastCellIndex);
                 }
             }
         }

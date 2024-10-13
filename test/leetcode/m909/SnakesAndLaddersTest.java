@@ -49,4 +49,15 @@ class SnakesAndLaddersTest {
         int expected = 1;
         assertEquals(expected, test.snakesAndLadders(board));
     }
+
+    @Test
+    void equalsThree() {
+        int[][] board = {{-1, 10, -1, 15, -1},
+                {-1, -1, 18, 2, 20},
+                {-1, -1, 12, -1, -1},
+                {2, 4, 11, 18, 8},
+                {-1, -1, -1, -1, -1}};
+        int expected = 3;
+        assertEquals(expected, test.snakesAndLadders(board));
+    }
 }
