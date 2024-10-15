@@ -4,8 +4,6 @@
 
 package leetcode.m208;
 
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * LeetCode 208
@@ -15,28 +13,74 @@ import java.util.Set;
  * @since 2024/10/15 10:31
  */
 public class Trie {
-    private final Set<String> wordSet;
-    private final Set<String> prefixSet;
+    private final TrieNode root;
 
     public Trie() {
-        this.wordSet = new HashSet<>();
-        this.prefixSet = new HashSet<>();
+        root = new TrieNode();
     }
 
+    // Inserts a word into the trie.
     public void insert(String word) {
-        wordSet.add(word);
-        for (int i = 0; i < word.length(); i++) {
-            String prefix = word.substring(0, i + 1);
-            prefixSet.add(prefix);
+        TrieNode node = root;
+        for (char c : word.toCharArray()) {
+            if (!node.containsKey(c)) {
+                node.put(c, new TrieNode());
+            }
+            node = node.get(c);
         }
+        node.setEnd();
     }
 
+    // Returns if the word is in the trie.
     public boolean search(String word) {
-        return wordSet.contains(word);
+        TrieNode node = searchPrefix(word);
+        return node != null && node.isEnd();
     }
 
+    // Returns if there is any word in the trie that starts with the given prefix.
     public boolean startsWith(String prefix) {
-        return prefixSet.contains(prefix);
+        return searchPrefix(prefix) != null;
+    }
+
+    private TrieNode searchPrefix(String word) {
+        TrieNode node = root;
+        for (char c : word.toCharArray()) {
+            if (node.containsKey(c)) {
+                node = node.get(c);
+            } else {
+                return null;
+            }
+        }
+        return node;
+    }
+}
+
+class TrieNode {
+    private final TrieNode[] links;
+    private boolean isEnd;
+
+    public TrieNode() {
+        this.links = new TrieNode[26];
+    }
+
+    public boolean containsKey(char ch) {
+        return links[ch - 'a'] != null;
+    }
+
+    public TrieNode get(char ch) {
+        return links[ch - 'a'];
+    }
+
+    public void put(char ch, TrieNode node) {
+        links[ch - 'a'] = node;
+    }
+
+    public void setEnd() {
+        isEnd = true;
+    }
+
+    public boolean isEnd() {
+        return isEnd;
     }
 }
 
