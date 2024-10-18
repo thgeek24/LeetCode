@@ -15,92 +15,59 @@ import java.util.List;
  * @since 2024/10/17 15:33
  */
 public class WordSearchII {
-    private final int[][] directions = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
-    private int m;
-    private int n;
-    private boolean[][] visited;
-    private TrieNode root;
+    static class TrieNode {
+        TrieNode[] children = new TrieNode[26];
+        String word;
+    }
+
+    private void insert(TrieNode root, String word) {
+        TrieNode node = root;
+        for (char c : word.toCharArray()) {
+            int idx = c - 'a';
+            if (node.children[idx] == null) {
+                node.children[idx] = new TrieNode();
+            }
+            node = node.children[idx];
+        }
+        node.word = word;
+    }
 
     public List<String> findWords(char[][] board, String[] words) {
-        init(board);
+        List<String> result = new ArrayList<>();
+        TrieNode root = new TrieNode();
 
-        for (int i = 0; i < m; i++) {
-            for (int j = 0; j < n; j++) {
-                StringBuilder sb = new StringBuilder();
-                visit(i, j, visited, board, sb);
-            }
-        }
-
-        List<String> res = new ArrayList<>();
+        // Build Trie for the words
         for (String word : words) {
-            if (root.search(word)) {
-                res.add(word);
+            insert(root, word);
+        }
+
+        // DFS from each cell in the board
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[0].length; j++) {
+                dfs(board, i, j, root, result);
             }
         }
-        return res;
+
+        return result;
     }
 
-    private void init(char[][] board) {
-        m = board.length;
-        n = board[0].length;
-        visited = new boolean[m][n];
-        root = new TrieNode();
-    }
+    private void dfs(char[][] board, int i, int j, TrieNode node, List<String> result) {
+        char c = board[i][j];
+        if (c == '#' || node.children[c - 'a'] == null) return;
 
-    private void visit(int x, int y, boolean[][] visited, char[][] board, StringBuilder sb) {
-        if (reachable(x, y, board.length, board[0].length) && !visited[x][y]) {
-            sb.append(board[x][y]);
-            visited[x][y] = true;
-
-            boolean isEnd = true;
-            for (int[] dir : directions) {
-                int i = x + dir[0];
-                int j = y + dir[1];
-                if (reachable(i, j, board.length, board[0].length) && !visited[i][j]) {
-                    isEnd = false;
-                    visit(i, j, visited, board, sb);
-                }
-            }
-            if (isEnd) {
-                root.addWord(sb.toString());
-            }
-            sb.deleteCharAt(sb.length() - 1);
-            visited[x][y] = false;
-        }
-    }
-
-    private boolean reachable(int i, int j, int m, int n) {
-        return i >= 0 && j >= 0 && i < m && j < n;
-    }
-
-    private static class TrieNode {
-        private final TrieNode[] children;
-
-        public TrieNode() {
-            this.children = new TrieNode[26];
+        node = node.children[c - 'a'];
+        if (node.word != null) {
+            result.add(node.word);
+            node.word = null; // Avoid duplicates
         }
 
-        public void addWord(String word) {
-            TrieNode cur = this;
-            char[] wordChars = word.toCharArray();
-            for (char ch : wordChars) {
-                if (cur.children[ch - 'a'] == null) {
-                    cur.children[ch - 'a'] = new TrieNode();
-                }
-                cur = cur.children[ch - 'a'];
-            }
-        }
+        board[i][j] = '#'; // Mark as visited
 
-        public boolean search(String word) {
-            TrieNode cur = this;
-            char[] wordChars = word.toCharArray();
-            for (char ch : wordChars) {
-                if (cur.children[ch - 'a'] == null) {
-                    return false;
-                }
-                cur = cur.children[ch - 'a'];
-            }
-            return true;
-        }
+        if (i > 0) dfs(board, i - 1, j, node, result);
+        if (j > 0) dfs(board, i, j - 1, node, result);
+        if (i < board.length - 1) dfs(board, i + 1, j, node, result);
+        if (j < board[0].length - 1) dfs(board, i, j + 1, node, result);
+
+        board[i][j] = c; // Unmark as visited
     }
 }
