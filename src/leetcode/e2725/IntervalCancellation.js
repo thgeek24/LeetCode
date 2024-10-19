@@ -5,19 +5,13 @@
  * @return {Function}
  */
 var cancellable = function (fn, args, t) {
-    let intervalId;
-    let result = [];
-
     function intervalFn() {
-        const returned = fn(...args);
-        const time = Date.now() - startTime;
-        result.push({time, returned});
+        fn(...args);
     }
 
-    const startTime = Date.now();
     intervalFn();  // Call immediately
 
-    intervalId = setInterval(intervalFn, t);
+    let intervalId = setInterval(intervalFn, t);
 
     return function cancelFn() {
         clearInterval(intervalId);
