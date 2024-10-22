@@ -8,26 +8,18 @@ package leetcode.m53;
  * LeetCode 53
  *
  * @author Tao Hong
- * @version 1.0
- * @since 2024/10/22 10:08
+ * @version 2.0
  */
 public class MaximumSubarray {
     public int maxSubArray(int[] nums) {
-        int tmp = 0;
-        int max = nums[0];
-        int start;
-        int end;
+        int curMax = 0;
+        int maxSum = Integer.MIN_VALUE;
 
-        for (start = 0; start < nums.length; start++) {
-            end = start;
-            while (end < nums.length) {
-                tmp = tmp + nums[end++];
-                if (max < tmp) {
-                    max = tmp;
-                }
-            }
-            tmp = 0;
+        for (int num : nums) {
+            curMax = Math.max(curMax + num, num);
+            maxSum = Math.max(maxSum, curMax);
         }
-        return max;
+
+        return maxSum;
     }
 }
