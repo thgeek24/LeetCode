@@ -13,24 +13,27 @@ package leetcode.m918;
  */
 public class MaximumSumCircularSubarray {
     public int maxSubarraySumCircular(int[] nums) {
-        int len = nums.length;
-        int max = Integer.MIN_VALUE;
-        int[] dp = new int[len];
-        for (int i = 0; i < len; i++) {
-            dp[i] = nums[i];
-            max = Math.max(max, dp[i]);
+        int maxKadane = kadane(nums);  // Step 1: Non-circular max subarray sum
+
+        // Step 2: Circular max subarray sum
+        int totalSum = 0;
+        for (int i = 0; i < nums.length; i++) {
+            totalSum += nums[i];
+            nums[i] = -nums[i];  // Invert the array for min subarray calculation
         }
 
-        int offset = 1;
-        while (offset < len) {
-            for (int i = 0; i < len; i++) {
-                int j = (i + offset) % len;
-                dp[i] += nums[j];
-                max = Math.max(max, dp[i]);
-            }
-            offset++;
-        }
+        int maxWrap = totalSum + kadane(nums);  // totalSum - (-min subarray)
 
-        return max;
+        // Step 3: Handle all-negative array case
+        return (maxWrap == 0) ? maxKadane : Math.max(maxKadane, maxWrap);
+    }
+
+    private int kadane(int[] nums) {
+        int maxEndingHere = nums[0], maxSoFar = nums[0];
+        for (int i = 1; i < nums.length; i++) {
+            maxEndingHere = Math.max(nums[i], maxEndingHere + nums[i]);
+            maxSoFar = Math.max(maxSoFar, maxEndingHere);
+        }
+        return maxSoFar;
     }
 }
