@@ -1,5 +1,16 @@
-package leetcode;
+/*
+ * Copyright (c) 2024 THGEEK.COM. All rights reserved.
+ */
 
+package leetcode.m53;
+
+/**
+ * LeetCode 53
+ *
+ * @author Tao Hong
+ * @version 1.0
+ * @since 2024/10/22 10:08
+ */
 public class MaximumSubarray {
     public int maxSubArray(int[] nums) {
         int tmp = 0;
@@ -18,11 +29,5 @@ public class MaximumSubarray {
             tmp = 0;
         }
         return max;
-    }
-
-    public static void main(String[] args) {
-        MaximumSubarray ms = new MaximumSubarray();
-        int[] nums = {-2, 1, -3, 4, -1, 2, 1, -5, 4};
-        System.out.println(ms.maxSubArray(nums));
     }
 }
