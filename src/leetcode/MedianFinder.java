@@ -4,6 +4,7 @@
 
 package leetcode;
 
+import java.util.Comparator;
 import java.util.PriorityQueue;
 
 /**
@@ -14,42 +15,34 @@ import java.util.PriorityQueue;
  * @since 2024/10/27 11:06
  */
 public class MedianFinder {
-    private PriorityQueue<Integer> minHeap;
+    private final PriorityQueue<Integer> left;  // Max-heap
+    private final PriorityQueue<Integer> right; // Min-heap
 
     public MedianFinder() {
-        this.minHeap = new PriorityQueue<>();
+        left = new PriorityQueue<>(Comparator.reverseOrder()); // Max-heap
+        right = new PriorityQueue<>(); // Min-heap
     }
 
     public void addNum(int num) {
-        minHeap.add(num);
+        // Step 1: Add number to one of the heaps
+        if (left.isEmpty() || num <= left.peek()) {
+            left.offer(num);
+        } else {
+            right.offer(num);
+        }
+
+        // Step 2: Balance the heaps
+        if (left.size() > right.size() + 1) {
+            right.offer(left.poll());
+        } else if (right.size() > left.size()) {
+            left.offer(right.poll());
+        }
     }
 
     public double findMedian() {
-        int size = minHeap.size();
-        PriorityQueue<Integer> minHeap_ = new PriorityQueue<>(minHeap);
-
-        if (size % 2 == 1) {
-            int mid = size / 2;
-            int i = 0;
-            while (i < mid) {
-                minHeap.poll();
-                i++;
-            }
-            double res = minHeap.peek();
-            minHeap = minHeap_;
-            return res;
-        } else {
-            int leftMid = size / 2 - 1;
-            int i = 0;
-            while (i < leftMid) {
-                minHeap.poll();
-                i++;
-            }
-            int leftMidVal = minHeap.poll();
-            int rightMidVal = minHeap.poll();
-            double res = (double) (leftMidVal + rightMidVal) / 2;
-            minHeap = minHeap_;
-            return res;
+        if (left.size() > right.size()) {
+            return left.peek();
         }
+        return (left.peek() + right.peek()) / 2.0;
     }
 }
