@@ -4,8 +4,6 @@
 
 package leetcode.m97;
 
-import java.util.Objects;
-
 /**
  * LeetCode 97
  *
@@ -18,30 +16,20 @@ public class InterleavingString {
         if (s1.length() + s2.length() != s3.length()) {
             return false;
         }
-        if (s1.isEmpty() || s2.isEmpty()) {
-            return Objects.equals(s1, s3) || Objects.equals(s2, s3);
-        }
 
-        int i = 0;
-        int j = 0;
-        int t = 0;
-        while (i < s1.length() && j < s2.length()) {
-            boolean moved = false;
-            while (i < s1.length() && s1.charAt(i) == s3.charAt(t)) {
-                i++;
-                t++;
-                moved = true;
-            }
-            while (j < s2.length() && s2.charAt(j) == s3.charAt(t)) {
-                j++;
-                t++;
-                moved = true;
-            }
-            if (!moved) {
-                return false;
+        boolean[][] dp = new boolean[s1.length() + 1][s2.length() + 1];
+        dp[0][0] = true;
+
+        for (int i = 0; i <= s1.length(); i++) {
+            for (int j = 0; j <= s2.length(); j++) {
+                if (i > 0) {
+                    dp[i][j] |= dp[i - 1][j] && s1.charAt(i - 1) == s3.charAt(i + j - 1);
+                }
+                if (j > 0) {
+                    dp[i][j] |= dp[i][j - 1] && s2.charAt(j - 1) == s3.charAt(i + j - 1);
+                }
             }
         }
-
-        return true;
+        return dp[s1.length()][s2.length()];
     }
 }
