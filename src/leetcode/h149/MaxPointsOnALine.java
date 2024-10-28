@@ -4,6 +4,9 @@
 
 package leetcode.h149;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * LeetCode 149
  *
@@ -13,86 +16,41 @@ package leetcode.h149;
  */
 public class MaxPointsOnALine {
     public int maxPoints(int[][] points) {
-        int xMax = Integer.MIN_VALUE;
-        int yMax = Integer.MIN_VALUE;
-        int xMin = Integer.MAX_VALUE;
-        int yMin = Integer.MAX_VALUE;
-        for (int[] point : points) {
-            xMax = Math.max(xMax, point[0]);
-            yMax = Math.max(yMax, point[1]);
-            xMin = Math.min(xMin, point[0]);
-            yMin = Math.min(yMin, point[1]);
+        if (points.length < 2) {
+            return points.length;
         }
 
-        int m = xMax - xMin + 1;
-        int n = yMax - yMin + 1;
-        int xShift = xMin == 0 ? 0 : -xMin;
-        int yShift = yMin == 0 ? 0 : -yMin;
-        boolean[][] map = new boolean[m][n];
-        for (int[] point : points) {
-            int x = point[0] + xShift;
-            int y = point[1] + yShift;
-            map[x][y] = true;
+        int maxPoints = 0;
+        for (int i = 0; i < points.length; i++) {
+            Map<String, Integer> slopeCount = new HashMap<>();
+            int duplicates = 0;
+            int localMax = 0;
+
+            for (int j = i + 1; j < points.length; j++) {
+                int dx = points[j][0] - points[i][0];
+                int dy = points[j][1] - points[i][1];
+
+                if (dx == 0 && dy == 0) {
+                    duplicates++;
+                    continue;
+                }
+
+                int gcd = gcd(dx, dy);
+                dx /= gcd;
+                dy /= gcd;
+
+                String slope = dx + "/" + dy;
+                slopeCount.put(slope, slopeCount.getOrDefault(slope, 0) + 1);
+                localMax = Math.max(localMax, slopeCount.get(slope));
+            }
+
+            maxPoints = Math.max(maxPoints, localMax + duplicates + 1);
         }
 
-        int res = 0;
-        for (int i = 0; i < m; i++) {
-            int candidate = 0;
-            for (int j = 0; j < n; j++) {
-                if (map[i][j]) {
-                    candidate++;
-                }
-            }
-            res = Math.max(res, candidate);
-        }
-        for (int j = 0; j < n; j++) {
-            int candidate = 0;
-            for (int i = 0; i < m; i++) {
-                if (map[i][j]) {
-                    candidate++;
-                }
-            }
-            res = Math.max(res, candidate);
-        }
-        for (int j = 0; j < n; j++) {
-            int x = 0;
-            int y = j;
-            int candidate = 0;
-            while (x < m && y >= 0) {
-                if (map[x][y]) {
-                    candidate++;
-                }
-                x++;
-                y--;
-            }
-            res = Math.max(res, candidate);
-        }
-        for (int j = 0; j < n; j++) {
-            int x = 0;
-            int y = j;
-            int candidate = 0;
-            while (x < m && y >= 0) {
-                if (map[x][y]) {
-                    candidate++;
-                }
-                x++;
-                y--;
-            }
-            res = Math.max(res, candidate);
-        }
-        for (int j = n; j >= 0; j--) {
-            int x = 0;
-            int y = j;
-            int candidate = 0;
-            while (x < m && y < n) {
-                if (map[x][y]) {
-                    candidate++;
-                }
-                x++;
-                y++;
-            }
-            res = Math.max(res, candidate);
-        }
-        return res;
+        return maxPoints;
+    }
+
+    private int gcd(int a, int b) {
+        return b == 0 ? a : gcd(b, a % b);
     }
 }
