@@ -4,9 +4,6 @@
 
 package leetcode.m334;
 
-import java.util.Comparator;
-import java.util.TreeMap;
-
 /**
  * LeetCode 334
  *
@@ -16,25 +13,15 @@ import java.util.TreeMap;
  */
 public class IncreasingTripletSubsequence {
     public boolean increasingTriplet(int[] nums) {
-        if (nums.length < 3) {
-            return false;
-        }
-        TreeMap<Integer, Integer> left = new TreeMap<>(Comparator.naturalOrder());
-        TreeMap<Integer, Integer> right = new TreeMap<>(Comparator.reverseOrder());
-        left.put(nums[0], 1);
-        for (int i = 2; i < nums.length; i++) {
-            right.put(nums[i], right.getOrDefault(nums[i], 0) + 1);
-        }
-        for (int i = 1; i < nums.length - 1; i++) {
-            if (left.firstKey() < nums[i] && right.firstKey() > nums[i]) {
-                return true;
-            }
-            left.put(nums[i], left.getOrDefault(nums[i], 0) + 1);
-            Integer count = right.get(nums[i + 1]);
-            if (count <= 1) {
-                right.remove(nums[i + 1]);
+        int first = Integer.MAX_VALUE;
+        int second = Integer.MAX_VALUE;
+        for (int num : nums) {
+            if (num <= first) {
+                first = num;
+            } else if (num <= second) {
+                second = num;
             } else {
-                right.put(nums[i + 1], count - 1);
+                return true;
             }
         }
         return false;
