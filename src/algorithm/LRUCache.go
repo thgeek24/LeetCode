@@ -1,79 +1,74 @@
 package algorithm
 
 // LeetCode 146
+type Node struct {
+	key, value int
+	prev, next *Node
+}
+
 type LRUCache struct {
-	lruMap    map[int]*Node
-	capacity  int
-	dummyHead *Node
+	capacity   int
+	cache      map[int]*Node
+	head, tail *Node
 }
 
 func Constructor(capacity int) LRUCache {
-	dummyHead := Node{key: -1, val: -1}
-	return LRUCache{make(map[int]*Node), capacity, &dummyHead}
+	head := &Node{}
+	tail := &Node{}
+	head.next = tail
+	tail.prev = head
+	return LRUCache{
+		capacity: capacity,
+		cache:    make(map[int]*Node),
+		head:     head,
+		tail:     tail,
+	}
 }
 
 func (this *LRUCache) Get(key int) int {
-	if node, exists := this.lruMap[key]; exists {
-		if node.next == nil {
-			return node.val
-		}
-		removeNode(node)
-		addNode(this.dummyHead, node)
-		return node.val
+	if node, ok := this.cache[key]; ok {
+		this.moveToHead(node)
+		return node.value
 	}
 	return -1
 }
 
 func (this *LRUCache) Put(key int, value int) {
-	node, exists := this.lruMap[key]
-	if exists {
-		removeNode(node)
-		node.val = value
-		addNode(this.dummyHead, node)
+	if node, ok := this.cache[key]; ok {
+		node.value = value
+		this.moveToHead(node)
 	} else {
-		if len(this.lruMap) == this.capacity {
-			head := this.dummyHead.next
-			removeNode(head)
-			delete(this.lruMap, head.key)
+		newNode := &Node{key: key, value: value}
+		this.cache[key] = newNode
+		this.addToHead(newNode)
+		if len(this.cache) > this.capacity {
+			tail := this.removeTail()
+			delete(this.cache, tail.key)
 		}
-		node = &Node{key: key, val: value}
-		addNode(this.dummyHead, node)
-		this.lruMap[key] = node
 	}
 }
 
-func removeNode(node *Node) {
-	if node == nil {
-		return
-	}
-	prev := node.prev
-	next := node.next
-	if prev != nil {
-		prev.next = next
-	}
-	if next != nil {
-		next.prev = prev
-	}
-	node.prev = nil
-	node.next = nil
+func (this *LRUCache) addToHead(node *Node) {
+	node.prev = this.head
+	node.next = this.head.next
+	this.head.next.prev = node
+	this.head.next = node
 }
 
-func addNode(head *Node, node *Node) {
-	tail := head
-	for tail.next != nil {
-		tail = tail.next
-	}
-	tail.next = node
-
-	node.prev = tail
-	node.next = nil
+func (this *LRUCache) removeNode(node *Node) {
+	node.prev.next = node.next
+	node.next.prev = node.prev
 }
 
-type Node struct {
-	key  int
-	val  int
-	prev *Node
-	next *Node
+func (this *LRUCache) moveToHead(node *Node) {
+	this.removeNode(node)
+	this.addToHead(node)
+}
+
+func (this *LRUCache) removeTail() *Node {
+	tail := this.tail.prev
+	this.removeNode(tail)
+	return tail
 }
 
 /**
