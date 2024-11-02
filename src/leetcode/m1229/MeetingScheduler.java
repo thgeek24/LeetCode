@@ -11,6 +11,7 @@ import java.util.List;
 
 /**
  * LeetCode 1229
+ * <p>Hint: draw a draft to see different scenarios</p>
  *
  * @author Tao Hong
  * @version 1.0
@@ -51,6 +52,7 @@ public class MeetingScheduler {
             smaller = slot2;
             larger = slot1;
         }
-        return Math.min(smaller[1], larger[1]) - larger[0];
+        int len = Math.min(smaller[1], larger[1]) - larger[0];
+        return Math.max(len, 0);
     }
 }
