@@ -9,6 +9,8 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 /**
+ * LeetCode 3342
+ *
  * @author Tao Hong
  * @version 1.0
  * @since 2024/11/03 10:35

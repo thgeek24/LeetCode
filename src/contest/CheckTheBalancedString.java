@@ -5,6 +5,8 @@
 package contest;
 
 /**
+ * LeetCode 3340
+ *
  * @author Tao Hong
  * @version 1.0
  * @since 2024/11/03 10:31
@@ -22,10 +24,5 @@ public class CheckTheBalancedString {
             }
         }
         return even == odd;
-    }
-
-    public static void main(String[] args) {
-        String num = "24123";
-        System.out.println(new CheckTheBalancedString().isBalanced(num));
     }
 }
