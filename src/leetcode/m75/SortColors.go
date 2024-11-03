@@ -2,28 +2,18 @@ package m75
 
 // LeetCode 75
 func sortColors(nums []int) {
-	redCnt := 0
-	whiteCnt := 0
-	blueCnt := 0
-	for _, num := range nums {
-		if num == 0 {
-			redCnt++
-		} else if num == 1 {
-			whiteCnt++
+	low, mid, high := 0, 0, len(nums)-1
+
+	for mid <= high {
+		if nums[mid] == 0 {
+			nums[low], nums[mid] = nums[mid], nums[low]
+			low++
+			mid++
+		} else if nums[mid] == 1 {
+			mid++
 		} else {
-			blueCnt++
-		}
-	}
-	for i, _ := range nums {
-		if redCnt != 0 {
-			nums[i] = 0
-			redCnt--
-		} else if whiteCnt != 0 {
-			nums[i] = 1
-			whiteCnt--
-		} else {
-			nums[i] = 2
-			blueCnt--
+			nums[mid], nums[high] = nums[high], nums[mid]
+			high--
 		}
 	}
 }
