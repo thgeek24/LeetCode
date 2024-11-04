@@ -1,4 +1,8 @@
-package algorithm
+/*
+ * Copyright (c) 2024 THGEEK.COM. All rights reserved.
+ */
+
+package m146
 
 import (
 	"fmt"
