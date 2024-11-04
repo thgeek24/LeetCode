@@ -2,7 +2,7 @@
  * Copyright (c) 2024 THGEEK.COM. All rights reserved.
  */
 
-package leetcode;
+package leetcode.m416;
 
 /**
  * LeetCode 416
@@ -11,7 +11,7 @@ package leetcode;
  * @version 1.0
  * @since 2024/01/18 10:22
  */
-public class PartitionEqualSubsetSum_416 {
+public class PartitionEqualSubsetSum {
     public boolean canPartition(int[] nums) {
         int totalSum = 0;
         for (int num : nums) {
