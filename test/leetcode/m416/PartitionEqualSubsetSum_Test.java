@@ -2,7 +2,7 @@
  * Copyright (c) 2024 THGEEK.COM. All rights reserved.
  */
 
-package leetcode;
+package leetcode.m416;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,18 +10,18 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Test for {@link PartitionEqualSubsetSum_416}
+ * Test for {@link PartitionEqualSubsetSum}
  *
  * @author Tao Hong
  * @version 1.0
  * @since 2024/01/18 10:32
  */
-class PartitionEqualSubsetSum_416Test {
-    private PartitionEqualSubsetSum_416 test;
+class PartitionEqualSubsetSum_Test {
+    private PartitionEqualSubsetSum test;
 
     @BeforeEach
     void setUp() {
-        test = new PartitionEqualSubsetSum_416();
+        test = new PartitionEqualSubsetSum();
     }
 
     @Test

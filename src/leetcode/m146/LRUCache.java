@@ -1,4 +1,8 @@
-package algorithm;
+/*
+ * Copyright (c) 2024 THGEEK.COM. All rights reserved.
+ */
+
+package leetcode.m146;
 
 import java.util.HashMap;
 import java.util.Map;
