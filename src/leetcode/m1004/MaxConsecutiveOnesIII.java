@@ -31,15 +31,18 @@ public class MaxConsecutiveOnesIII {
             }
             max = Math.max(max, len);
 
+            // 找到从 slow 起的第一个 0
             while (slow < nums.length && nums[slow] == 1) {
                 slow++;
                 len--;
             }
             if (slow == fast) {
+                // 到达 fast，说明 k = 0
                 slow++;
                 fast++;
                 continue;
             }
+            // 如果没到达 fast，则再进一位，以增加一个 flip
             len--;
             slow++;
             flips++;
