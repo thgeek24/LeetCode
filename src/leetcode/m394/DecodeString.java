@@ -8,6 +8,9 @@ import java.util.Stack;
 
 /**
  * LeetCode 394
+ * <p>
+ *     Hint: 遇到']'先出栈直到去除一个'['，然后再去除数字，然后将得到字符再压入栈
+ * </p>
  *
  * @author Tao Hong
  * @version 1.0
