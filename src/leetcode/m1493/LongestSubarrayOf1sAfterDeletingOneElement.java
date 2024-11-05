@@ -4,8 +4,6 @@
 
 package leetcode.m1493;
 
-import leetcode.m1004.MaxConsecutiveOnesIII;
-
 /**
  * LeetCode 1493
  *
@@ -15,8 +13,33 @@ import leetcode.m1004.MaxConsecutiveOnesIII;
  */
 public class LongestSubarrayOf1sAfterDeletingOneElement {
     public int longestSubarray(int[] nums) {
-        MaxConsecutiveOnesIII maxOnes = new MaxConsecutiveOnesIII();
-        int max = maxOnes.longestOnes(nums, 1);
+        int slow = 0;
+        int fast = 0;
+        int k = 1;
+
+        int max = 0;
+        int len = 0;
+        while (fast < nums.length) {
+            while (fast < nums.length) {
+                if (nums[fast] == 0 && k == 0) {
+                    break;
+                }
+                if (nums[fast] == 0) {
+                    k--;
+                }
+                len++;
+                fast++;
+            }
+            max = Math.max(max, len);
+
+            while (slow < nums.length && nums[slow] == 1) {
+                slow++;
+                len--;
+            }
+            len--;
+            k++;
+            slow++;
+        }
         return max - 1;
     }
 }
