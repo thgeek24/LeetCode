@@ -4,11 +4,12 @@
 
 package leetcode.m1466;
 
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.LinkedList;
-import java.util.Map;
+import java.util.List;
 import java.util.Queue;
-import java.util.TreeSet;
+import java.util.Set;
 
 /**
  * LeetCode 1466
@@ -19,55 +20,46 @@ import java.util.TreeSet;
  */
 public class ReorderRoutesToMakeAllPathsLeadToTheCityZero {
     public int minReorder(int n, int[][] connections) {
-        Map<Integer, TreeSet<Integer>> map = new HashMap<>();
-        for (int[] conn : connections) {
-            int index = conn[0];
-            TreeSet<Integer> nextCities = map.getOrDefault(index, new TreeSet<>());
-            nextCities.add(conn[1]);
-            map.put(index, nextCities);
+        // Graph representation using adjacency lists
+        List<List<Integer>> graph = new ArrayList<>();
+        Set<String> directedEdges = new HashSet<>();
+
+        for (int i = 0; i < n; i++) {
+            graph.add(new ArrayList<>());
         }
 
-        boolean[] connected = new boolean[n];
-        connected[0] = true;
-        int changes = 0;
-        if (map.containsKey(0)) {
-            Queue<Integer> queue = new LinkedList<>(map.get(0));
-            while (!queue.isEmpty()) {
-                int city = queue.poll();
-                connected[city] = true;
-                changes++;
-                if (map.containsKey(city)) {
-                    queue.addAll(map.get(city));
-                }
-            }
+        // Build the graph with directed edges and mark the original direction
+        for (int[] connection : connections) {
+            int from = connection[0];
+            int to = connection[1];
+            graph.get(from).add(to);
+            graph.get(to).add(from);
+            directedEdges.add(from + "," + to); // Marking original direction
         }
 
-        for (int i = 1; i < n; i++) {
-            if (connected[i]) {
-                continue;
-            }
-            if (!map.containsKey(i)) {
-                continue;
-            }
-            TreeSet<Integer> nextCities = map.get(i);
-            Integer first = nextCities.first();
-            if (!connected[first]) {
-                continue;
-            }
-            connected[i] = true;
-            Queue<Integer> queue = new LinkedList<>(nextCities);
-            while (!queue.isEmpty()) {
-                int city = queue.poll();
-                if (!connected[city]) {
-                    connected[city] = true;
-                    changes++;
-                    if (map.containsKey(city)) {
-                        queue.addAll(map.get(city));
+        // Start BFS traversal from node 0
+        int reorderCount = 0;
+        Queue<Integer> queue = new LinkedList<>();
+        boolean[] visited = new boolean[n];
+
+        queue.add(0);
+        visited[0] = true;
+
+        while (!queue.isEmpty()) {
+            int current = queue.poll();
+
+            for (int neighbor : graph.get(current)) {
+                if (!visited[neighbor]) {
+                    // Check if edge needs to be reordered
+                    if (directedEdges.contains(current + "," + neighbor)) {
+                        reorderCount++;
                     }
+                    queue.add(neighbor);
+                    visited[neighbor] = true;
                 }
             }
         }
 
-        return changes;
+        return reorderCount;
     }
 }
