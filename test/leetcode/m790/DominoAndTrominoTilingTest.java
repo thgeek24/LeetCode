@@ -35,4 +35,10 @@ class DominoAndTrominoTilingTest {
         int n = 1;
         assertEquals(1, test.numTilings(n));
     }
+
+    @Test
+    void test3() {
+        int n = 60;
+        assertEquals(882347204, test.numTilings(n));
+    }
 }
