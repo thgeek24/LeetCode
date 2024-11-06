@@ -4,11 +4,7 @@
 
 package leetcode.m2300;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * LeetCode 2300
@@ -19,37 +15,30 @@ import java.util.Map;
  */
 public class SuccessfulPairsOfSpellsAndPotions {
     public int[] successfulPairs(int[] spells, int[] potions, long success) {
-        Map<Integer, List<Integer>> map = new HashMap<>();
-        for (int i = 0; i < spells.length; i++) {
-            List<Integer> indexes = map.getOrDefault(spells[i], new ArrayList<>());
-            indexes.add(i);
-            map.put(spells[i], indexes);
-        }
-
-        Arrays.sort(spells);
+        // Sort the potions array to allow binary searching
         Arrays.sort(potions);
-        int[] res = new int[spells.length];
-        int spellIndex = 0;
-        while (spellIndex < spells.length) {
-            int spell = spells[spellIndex];
-            if (map.containsKey(spell)) {
-                int potionIndex = 0;
-                while (potionIndex < potions.length) {
-                    long product = (long) spell * potions[potionIndex];
-                    if (product >= success) {
-                        List<Integer> indexes = map.get(spell);
-                        int successCount = potions.length - potionIndex;
-                        for (Integer index : indexes) {
-                            res[index] = successCount;
-                        }
-                        map.remove(spell);
-                        break;
-                    }
-                    potionIndex++;
+        int n = potions.length;
+        int[] result = new int[spells.length];
+
+        for (int i = 0; i < spells.length; i++) {
+            int spell = spells[i];
+            // Calculate the minimum potion strength needed for a successful pair
+            long requiredPotion = (success + spell - 1) / spell; // Use ceiling division to avoid fractions
+
+            // Binary search to find the first valid potion for this spell
+            int left = 0, right = n - 1;
+            while (left <= right) {
+                int mid = left + (right - left) / 2;
+                if (potions[mid] >= requiredPotion) {
+                    right = mid - 1;
+                } else {
+                    left = mid + 1;
                 }
             }
-            spellIndex++;
+            // All potions from index `left` to the end of the array are successful pairs
+            result[i] = n - left;
         }
-        return res;
+
+        return result;
     }
 }
