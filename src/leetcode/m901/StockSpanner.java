@@ -4,8 +4,7 @@
 
 package leetcode.m901;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Stack;
 
 /**
  * LeetCode 901
@@ -15,31 +14,24 @@ import java.util.List;
  * @since 2024/11/07 00:29
  */
 public class StockSpanner {
-    private final List<Integer> prices;
+    private final Stack<int[]> stack;
 
     public StockSpanner() {
-        this.prices = new ArrayList<>();
+        // Stack stores pairs of [price, span]
+        stack = new Stack<>();
     }
 
     public int next(int price) {
-        if (prices.isEmpty()) {
-            prices.add(price);
-            return 1;
+        int span = 1; // Start with span of 1 (counting today)
+
+        // While stack is not empty and current price is greater than or equal to
+        // the price on top of stack, pop and add the span
+        while (!stack.isEmpty() && stack.peek()[0] <= price) {
+            span += stack.pop()[1];
         }
-        if (price >= prices.get(prices.size() - 1)) {
-            prices.add(price);
-            int count = 0;
-            for (int i = prices.size() - 1; i >= 0; i--) {
-                if (price >= prices.get(i)) {
-                    count++;
-                } else {
-                    break;
-                }
-            }
-            return count;
-        } else {
-            prices.add(price);
-            return 1;
-        }
+
+        // Add current price and its span to stack
+        stack.push(new int[]{price, span});
+        return span;
     }
 }
