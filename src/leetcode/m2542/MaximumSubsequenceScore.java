@@ -47,6 +47,9 @@ public class MaximumSubsequenceScore {
 
             // When we have exactly k elements, calculate the score
             if (minHeap.size() == k) {
+                // 已知 num2 递减，想要 max 增大，num1 需更大
+                // 如果新加的 num1 较小而被减出去，num2 留下与 sum 相乘，则因之前已有相同的 sum 与更大的 num2 相乘，所以 max 不会被更新
+                // 如果新加的 num1 较大则有可能更新 max，num2 每次都会留下，则更大的 sum 和可能减小的 num2 相乘，取旧 max 与新乘积的最大值
                 maxScore = Math.max(maxScore, sum * num2);
             }
         }

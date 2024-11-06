@@ -10,6 +10,8 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
+ * Test for {@link MaximumSubsequenceScore}
+ *
  * @author Tao Hong
  * @version 1.0
  * @since 2024/11/06 11:08
