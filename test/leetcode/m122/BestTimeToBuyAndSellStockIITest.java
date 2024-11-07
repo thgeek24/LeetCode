@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2023 THGEEK.COM. All rights reserved.
+ * Copyright (c) 2023-2024 THGEEK.COM. All rights reserved.
  */
 
-package leetcode;
+package leetcode.m122;
 
 import org.junit.Test;
 
