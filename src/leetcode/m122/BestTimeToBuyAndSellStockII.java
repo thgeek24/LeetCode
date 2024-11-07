@@ -1,4 +1,8 @@
-package leetcode;
+/*
+ * Copyright (c) 2024 THGEEK.COM. All rights reserved.
+ */
+
+package leetcode.m122;
 
 /**
  * @author taohong on 21/09/2018
