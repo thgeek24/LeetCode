@@ -50,4 +50,25 @@ class ConstructBinaryTreeFromPreorderAndInorderTraversalTest {
         int[] inorder = {1, 2};
         TreeNode root = test.buildTree(preorder, inorder);
     }
+
+    @Test
+    void test5() {
+        int[] preorder = {1, 2, 3};
+        int[] inorder = {3, 2, 1};
+        TreeNode root = test.buildTree(preorder, inorder);
+    }
+
+    @Test
+    void test6() {
+        int[] preorder = {1, 2, 3};
+        int[] inorder = {1, 2, 3};
+        TreeNode root = test.buildTree(preorder, inorder);
+    }
+
+    @Test
+    void test7() {
+        int[] preorder = {3, 2, 1, 4};
+        int[] inorder = {1, 2, 3, 4};
+        TreeNode root = test.buildTree(preorder, inorder);
+    }
 }

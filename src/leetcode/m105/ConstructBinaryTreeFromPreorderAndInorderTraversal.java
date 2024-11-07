@@ -6,6 +6,9 @@ package leetcode.m105;
 
 import leetcode.TreeNode;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * LeetCode 105
  *
@@ -14,34 +17,58 @@ import leetcode.TreeNode;
  * @since 2024/11/07 11:36
  */
 public class ConstructBinaryTreeFromPreorderAndInorderTraversal {
+    private int[] preorder;
+    private int[] inorder;
+    private Map<Integer, Integer> preorderMap;
+    private Map<Integer, Integer> inorderMap;
+
     public TreeNode buildTree(int[] preorder, int[] inorder) {
-        return buildTree(preorder, inorder, 0, 0, inorder.length - 1);
+        init(preorder, inorder);
+        return buildTree(0, preorder.length - 1, 0, inorder.length - 1);
     }
 
-    private TreeNode buildTree(int[] preorder, int[] inorder, int preIndex, int inIndexStart, int inIndexEnd) {
-        if (inIndexStart == inIndexEnd) {
-            return new TreeNode(inorder[inIndexStart]);
-        }
-        int inTop = -1;
-        for (int i = inIndexStart; i <= inIndexEnd; i++) {
-            if (inorder[i] == preorder[preIndex]) {
-                inTop = i;
-                break;
-            }
-        }
-        if (inTop == -1) {
+    private void init(int[] preorder, int[] inorder) {
+        this.preorder = preorder;
+        this.inorder = inorder;
+        this.preorderMap = buildMap(preorder);
+        this.inorderMap = buildMap(inorder);
+    }
+
+    private TreeNode buildTree(int preStart, int preEnd, int inStart, int inEnd) {
+        if (preStart > preEnd) {
             return null;
         }
-        if (inTop == inIndexStart) {
-            TreeNode right = buildTree(preorder, inorder, preIndex + 1, inTop + 1, inIndexEnd);
-            return new TreeNode(inorder[inTop], null, right);
+        if (preStart == preEnd) {
+            return new TreeNode(preorder[preStart]);
         }
-        if (inTop == inIndexEnd) {
-            TreeNode left = buildTree(preorder, inorder, preIndex + 1, inIndexStart, inTop - 1);
-            return new TreeNode(inorder[inTop], left, null);
+        int rootVal = preorder[preStart];
+        TreeNode root = new TreeNode(rootVal);
+
+        int inRootIdx = inorderMap.get(rootVal);
+        if (inRootIdx == inStart) {
+            root.right = buildTree(preStart + 1, preEnd, inStart + 1, inEnd);
+            return root;
         }
-        TreeNode left = buildTree(preorder, inorder, preIndex + 1, inIndexStart, inTop - 1);
-        TreeNode right = buildTree(preorder, inorder, preIndex + inTop - inIndexStart + 1, inTop + 1, inIndexEnd);
-        return new TreeNode(inorder[inTop], left, right);
+        if (inRootIdx == inEnd) {
+            root.left = buildTree(preStart + 1, preEnd, inStart, inEnd - 1);
+            return root;
+        }
+
+        int preLeftEnd = 0;
+        for (int i = inStart; i < inRootIdx; i++) {
+            preLeftEnd = Math.max(preLeftEnd, preorderMap.get(inorder[i]));
+        }
+
+        root.left = buildTree(preStart + 1, preLeftEnd, inStart, inRootIdx - 1);
+        root.right = buildTree(preLeftEnd + 1, preEnd, inRootIdx + 1, inEnd);
+        return root;
+    }
+
+    private Map<Integer, Integer> buildMap(int[] order) {
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < order.length; i++) {
+            map.put(order[i], i);
+        }
+        return map;
     }
 }
