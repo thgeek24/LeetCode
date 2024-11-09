@@ -14,6 +14,10 @@ import leetcode.ListNode;
  * @since 2024/11/05 15:54
  */
 public class ListNodeComparator {
+    private ListNodeComparator() {
+        // avoid malicious initialization
+    }
+
     public static boolean equals(ListNode listNode1, ListNode listNode2) {
         if (listNode1 == listNode2) {
             return true;
