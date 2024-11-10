@@ -2,7 +2,7 @@
  * Copyright (c) 2024 THGEEK.COM. All rights reserved.
  */
 
-package contest;
+package contest.w422;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
