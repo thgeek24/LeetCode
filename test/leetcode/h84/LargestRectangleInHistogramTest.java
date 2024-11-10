@@ -51,4 +51,11 @@ class LargestRectangleInHistogramTest {
         int expected = 6;
         assertEquals(expected, test.largestRectangleArea(heights));
     }
+
+    @Test
+    void equalsFifteen() {
+        int[] heights = {5, 6, 7};
+        int expected = 15;
+        assertEquals(expected, test.largestRectangleArea(heights));
+    }
 }
