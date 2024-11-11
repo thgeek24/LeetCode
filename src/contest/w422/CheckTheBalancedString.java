@@ -2,7 +2,7 @@
  * Copyright (c) 2024 THGEEK.COM. All rights reserved.
  */
 
-package contest;
+package contest.w422;
 
 /**
  * LeetCode 3340
