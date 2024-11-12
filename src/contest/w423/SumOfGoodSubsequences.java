@@ -4,9 +4,6 @@
 
 package contest.w423;
 
-import java.util.LinkedList;
-import java.util.Queue;
-
 /**
  * LeetCode 3351
  *
@@ -16,28 +13,15 @@ import java.util.Queue;
  */
 public class SumOfGoodSubsequences {
     public int sumOfGoodSubsequences(int[] nums) {
-        if (nums.length == 1) {
-            return nums[0];
+        long[] count = new long[100010];
+        long[] total = new long[100010];
+        long mod = 1000000007, res = 0;
+        for (int num : nums) {
+            count[num + 1] = (count[num] + count[num + 1] + count[num + 2] + 1) % mod;
+            long cur = total[num] + total[num + 2] + num * (count[num] + count[num + 2] + 1);
+            total[num + 1] = (total[num + 1] + cur) % mod;
+            res = (res + cur) % mod;
         }
-
-        int res = 0;
-        int MOD = 1000000007;
-        Queue<int[]> queue = new LinkedList<>();
-        for (int i = 0; i < nums.length; i++) {
-            queue.offer(new int[]{nums[i], nums[i], i});
-            res = (res + nums[i]) % MOD;
-        }
-        while (!queue.isEmpty()) {
-            int[] item = queue.poll();
-            for (int i = item[2] + 1; i < nums.length; i++) {
-                int abs = Math.abs(item[1] - nums[i]);
-                if (abs == 1) {
-                    int sum = item[0] + nums[i];
-                    queue.offer(new int[]{sum, nums[i], i});
-                    res = (res + sum) % MOD;
-                }
-            }
-        }
-        return res;
+        return (int) res;
     }
 }
