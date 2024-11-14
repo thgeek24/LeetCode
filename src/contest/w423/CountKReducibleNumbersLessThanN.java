@@ -25,6 +25,7 @@ public class CountKReducibleNumbersLessThanN {
             dp[i] = dp[bitCount(i)] + 1;
         }
 
+        // c[i][j] means the number of ways to choose j items from i items regardless the order
         int[][] c = new int[n][n];
         for (int i = 0; i < n; i++) {
             for (int j = 0; j <= i; j++) {
@@ -42,6 +43,7 @@ public class CountKReducibleNumbersLessThanN {
             if (charArr[i] == '0') {
                 continue;
             }
+            // choose j set bits from i bits
             int r = n - i - 1;
             for (int j = 0; j <= r; j++) {
                 if (dp[setBits + j] >= k) {
