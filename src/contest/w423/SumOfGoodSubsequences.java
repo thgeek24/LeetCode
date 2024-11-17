@@ -5,28 +5,26 @@
 package contest.w423;
 
 /**
+ * LeetCode 3351
+ *
  * @author Tao Hong
  * @version 1.0
  * @since 2024/11/10 11:36
  */
 public class SumOfGoodSubsequences {
     public int sumOfGoodSubsequences(int[] nums) {
-        int len = nums.length;
-        int[][][] dp = new int[len][len][2];
-        int sum = 0;
-        for (int i = 0; i < len; i++) {
-            dp[i][i][0] = nums[i];
-            dp[i][i][1] = nums[i];
-            sum += dp[i][i][0];
+        long[] count = new long[100010];
+        long[] total = new long[100010];
+        long mod = 1000000007, res = 0;
+        for (int num : nums) {
+            // count of subsequences ending with num
+            count[num + 1] = (count[num] + count[num + 1] + count[num + 2] + 1) % mod;
+            // current sum of new subsequences after adding num
+            long cur = total[num] + total[num + 2] + num * (count[num] + count[num + 2] + 1);
+            // total sum of subsequences ending with num
+            total[num + 1] = (total[num + 1] + cur) % mod;
+            res = (res + cur) % mod;
         }
-        for (int k = 1; k < len; k++) {
-            for (int i = 0; i + k < len; i++) {
-                int j = i + k;
-                if (Math.abs(nums[j] - nums[j - 1]) == 1) {
-
-                }
-            }
-        }
-        return sum;
+        return (int) res;
     }
 }
