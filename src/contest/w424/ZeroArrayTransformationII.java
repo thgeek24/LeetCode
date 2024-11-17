@@ -13,27 +13,33 @@ package contest.w424;
  */
 public class ZeroArrayTransformationII {
     public int minZeroArray(int[] nums, int[][] queries) {
-        int sum = 0;
-        for (int num : nums) {
-            sum += num;
+        int l = 0;
+        int r = queries.length + 1;
+        while (l < r) {
+            int mid = l + (r - l) / 2;
+            if (isZeroArray(nums, queries, mid)) {
+                r = mid;
+            } else {
+                l = mid + 1;
+            }
         }
-        if (sum == 0) {
-            return 0;
+        return l <= queries.length ? l : -1;
+    }
+
+    private boolean isZeroArray(int[] nums, int[][] queries, int k) {
+        int[] line = new int[nums.length + 1];
+        for (int i = 0; i < k; i++) {
+            line[queries[i][0]] += queries[i][2];
+            line[queries[i][1] + 1] -= queries[i][2];
         }
 
-        int k = 0;
-        for (int[] query : queries) {
-            int l = query[0], r = query[1];
-            for (int i = l; i <= r; i++) {
-                int decrement = Math.min(nums[i], query[2]);
-                nums[i] -= decrement;
-                sum -= decrement;
-            }
-            k++;
-            if (sum == 0) {
-                return k;
+        int curr = 0;
+        for (int i = 0; i < nums.length; i++) {
+            curr += line[i];
+            if (nums[i] > curr) {
+                return false;
             }
         }
-        return -1;
+        return true;
     }
 }
