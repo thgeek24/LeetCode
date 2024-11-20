@@ -4,9 +4,6 @@
 
 package contest.w424;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * LeetCode 3357
  *
@@ -16,22 +13,39 @@ import java.util.List;
  */
 public class MinimizeTheMaximumAdjacentElementDifference {
     public int minDifference(int[] nums) {
-        List<Integer> indexes = new ArrayList<>();
-        int prev = -1;
-        int maxDiff = Integer.MIN_VALUE;
-        for (int i = 0; i < nums.length; i++) {
-            int curr = nums[i];
-            if (curr == -1) {
-                indexes.add(i);
-                continue;
+        int n = nums.length, max_adj = 0, mina = Integer.MAX_VALUE, maxb = 0;
+        for (int i = 0; i < n - 1; ++i) {
+            int a = nums[i], b = nums[i + 1];
+            if (a > 0 && b > 0) {
+                max_adj = Math.max(max_adj, Math.abs(a - b));
+            } else if (a > 0 || b > 0) {
+                mina = Math.min(mina, Math.max(a, b));
+                maxb = Math.max(maxb, Math.max(a, b));
             }
-            if (prev != -1) {
-                maxDiff = Math.max(maxDiff, Math.abs(prev - curr));
-            }
-            prev = curr;
         }
 
-
-        return 0;
+        int res = 0, min_2r = (maxb - mina + 2) / 3 * 2;
+        for (int i = 0; i < n; ++i) {
+            if ((i > 0 && nums[i - 1] == -1) || nums[i] > 0) continue;
+            int j = i;
+            while (j < n && nums[j] == -1) {
+                j++;
+            }
+            int a = Integer.MAX_VALUE, b = 0;
+            if (i > 0) {
+                a = Math.min(a, nums[i - 1]);
+                b = Math.max(b, nums[i - 1]);
+            }
+            if (j < n) {
+                a = Math.min(a, nums[j]);
+                b = Math.max(b, nums[j]);
+            }
+            if (j - i == 1) {
+                res = Math.max(res, Math.min(maxb - a, b - mina));
+            } else {
+                res = Math.max(res, Math.min(maxb - a, Math.min(b - mina, min_2r)));
+            }
+        }
+        return Math.max(max_adj, (res + 1) / 2);
     }
 }
