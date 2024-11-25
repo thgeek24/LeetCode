@@ -8,7 +8,7 @@ import java.util.Comparator;
 import java.util.PriorityQueue;
 
 /**
- * LeetCode 3368
+ * LeetCode 3366
  *
  * @author Tao Hong
  * @version 1.0
