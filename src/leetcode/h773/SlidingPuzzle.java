@@ -19,12 +19,12 @@ import java.util.Set;
 public class SlidingPuzzle {
     public int slidingPuzzle(int[][] board) {
         String target = "123450"; // Target configuration
-        String start = "";        // Start configuration as a string
+        StringBuilder start = new StringBuilder();        // Start configuration as a string
 
         // Convert the input board to a string representation
         for (int[] row : board) {
             for (int num : row) {
-                start += num;
+                start.append(num);
             }
         }
 
@@ -43,8 +43,8 @@ public class SlidingPuzzle {
         Set<String> visited = new HashSet<>();
 
         // Initialize BFS
-        queue.offer(start);
-        visited.add(start);
+        queue.offer(start.toString());
+        visited.add(start.toString());
         int steps = 0;
 
         while (!queue.isEmpty()) {
