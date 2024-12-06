@@ -4,11 +4,14 @@
 
 package leetcode;
 
+import leetcode.e121.BestTimeToBuyAndSellStock;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
 /**
+ * Test for {@link BestTimeToBuyAndSellStock}
+ *
  * @author taohong on 05/09/2018
  */
 public class BestTimeToBuyAndSellStockTest {
