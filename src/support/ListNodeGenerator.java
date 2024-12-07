@@ -14,6 +14,10 @@ import leetcode.ListNode;
  * @since 2023/12/28 17:02
  */
 public class ListNodeGenerator {
+    private ListNodeGenerator() {
+        // avoid malicious initialization
+    }
+
     /**
      * Returns the head of the ListNode
      * where the value of each value is
