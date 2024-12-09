@@ -20,12 +20,12 @@ public class MaximumSubarraySumWithLengthDivisibleByK {
         }
 
         long max = Long.MIN_VALUE;
-        for (int i = 0; i < nums.length; i++) {
-            int j = i + k;
-            while (j <= nums.length) {
-                long sum = prefixSum[j] - prefixSum[i];
-                j = j + k;
-                max = Math.max(max, sum);
+        for (int i = 0; i < k; i++) {
+            long sum = 0;
+            for (int j = i; j + k <= nums.length; j += k) {
+                long n = prefixSum[j + k] - prefixSum[j];
+                sum = Math.max(n, sum + n);
+                max = Math.max(sum, max);
             }
         }
         return max;
