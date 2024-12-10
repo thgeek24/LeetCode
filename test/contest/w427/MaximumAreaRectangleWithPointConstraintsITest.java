@@ -44,4 +44,11 @@ class MaximumAreaRectangleWithPointConstraintsITest {
         int expected = 2;
         assertEquals(expected, test.maxRectangleArea(points));
     }
+
+    @Test
+    void equalsThirtyTwo() {
+        int[][] points = {{100, 80}, {67, 79}, {100, 79}, {67, 80}, {80, 47}};
+        int expected = 33;
+        assertEquals(expected, test.maxRectangleArea(points));
+    }
 }
