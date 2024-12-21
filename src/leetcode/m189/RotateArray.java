@@ -2,7 +2,7 @@
  * Copyright (c) 2024 THGEEK.COM. All rights reserved.
  */
 
-package leetcode;
+package leetcode.m189;
 
 /**
  * LeetCode 189
@@ -11,7 +11,7 @@ package leetcode;
  * @version 1.0
  * @since 2024/08/29 11:04
  */
-public class RotateArray_189 {
+public class RotateArray {
     public void rotate(int[] nums, int k) {
         if (k == 0 || nums.length == 1) {
             return;

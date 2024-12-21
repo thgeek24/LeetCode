@@ -2,7 +2,7 @@
  * Copyright (c) 2024 THGEEK.COM. All rights reserved.
  */
 
-package leetcode;
+package leetcode.m189;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,18 +10,18 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 /**
- * Test for {@link RotateArray_189}
+ * Test for {@link RotateArray}
  *
  * @author Tao Hong
  * @version 1.0
  * @since 2024/08/29 11:48
  */
-class RotateArray_189Test {
-    private RotateArray_189 test;
+class RotateArrayTest {
+    private RotateArray test;
 
     @BeforeEach
     void setUp() {
-        test = new RotateArray_189();
+        test = new RotateArray();
     }
 
     @Test
