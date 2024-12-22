@@ -7,7 +7,11 @@ package leetcode.m55;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.Arrays;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Test for {@link JumpGame}
@@ -17,22 +21,22 @@ import static org.junit.jupiter.api.Assertions.*;
  * @since 2024/12/22 10:58
  */
 class JumpGameTest {
-    private JumpGame test;
+    private List<JumpGame> tests;
 
     @BeforeEach
     void setUp() {
-        test = new JumpGame();
+        tests = Arrays.asList(new JumpGame.Solution1(), new JumpGame.Solution2());
     }
 
     @Test
     void test1() {
         int[] nums = {2, 3, 1, 1, 4};
-        assertTrue(test.canJump(nums));
+        tests.forEach(test -> assertTrue(test.canJump(nums)));
     }
 
     @Test
     void setTest2() {
         int[] nums = {3, 2, 1, 0, 4};
-        assertFalse(test.canJump(nums));
+        tests.forEach(test -> assertFalse(test.canJump(nums)));
     }
 }
