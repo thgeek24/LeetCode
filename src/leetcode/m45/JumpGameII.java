@@ -2,7 +2,7 @@
  * Copyright (c) 2024 THGEEK.COM. All rights reserved.
  */
 
-package leetcode;
+package leetcode.m45;
 
 /**
  * LeetCode 45
@@ -11,7 +11,7 @@ package leetcode;
  * @version 1.0
  * @since 2024/08/19 09:53
  */
-public class JumpGameII_45 {
+public class JumpGameII {
     public int jump(int[] nums) {
         int jumps = 0;
         int currentEnd = 0;
