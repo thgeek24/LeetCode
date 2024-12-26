@@ -2,7 +2,7 @@
  * Copyright (c) 2024 THGEEK.COM. All rights reserved.
  */
 
-package leetcode;
+package leetcode.m494;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,7 +16,7 @@ import java.util.Map;
  * @version 1.0
  * @since 2024/03/22 09:55
  */
-public class TargetSum_494 {
+public class TargetSum {
     public int findTargetSumWays(int[] nums, int target) {
         List<Map<Integer, Integer>> dp = new ArrayList<>();
         Map<Integer, Integer> map = new HashMap<>();

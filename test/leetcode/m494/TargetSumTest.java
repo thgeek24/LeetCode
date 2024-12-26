@@ -2,7 +2,7 @@
  * Copyright (c) 2024 THGEEK.COM. All rights reserved.
  */
 
-package leetcode;
+package leetcode.m494;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,18 +10,18 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Test for {@link TargetSum_494}
+ * Test for {@link TargetSum}
  *
  * @author Tao Hong
  * @version 1.0
  * @since 2024/03/22 09:57
  */
-class TargetSum_494Test {
-    private TargetSum_494 test;
+class TargetSumTest {
+    private TargetSum test;
 
     @BeforeEach
     void setUp() {
-        test = new TargetSum_494();
+        test = new TargetSum();
     }
 
     @Test
