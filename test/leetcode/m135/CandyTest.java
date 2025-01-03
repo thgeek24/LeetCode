@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2024 THGEEK.COM. All rights reserved.
+ * Copyright (c) 2024-2025 THGEEK.COM. All rights reserved.
  */
 
-package leetcode;
+package leetcode.m135;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,18 +10,18 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
- * Test for {@link Candy_135}
+ * Test for {@link Candy}
  *
  * @author Tao Hong
  * @version 1.0
  * @since 2024/08/20 09:09
  */
-class Candy_135Test {
-    private Candy_135 test;
+class CandyTest {
+    private Candy test;
 
     @BeforeEach
     void setUp() {
-        test = new Candy_135();
+        test = new Candy();
     }
 
     @Test
