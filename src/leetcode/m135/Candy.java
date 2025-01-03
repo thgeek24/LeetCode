@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2024 THGEEK.COM. All rights reserved.
+ * Copyright (c) 2024-2025 THGEEK.COM. All rights reserved.
  */
 
-package leetcode;
+package leetcode.m135;
 
 import java.util.Arrays;
 
@@ -13,7 +13,7 @@ import java.util.Arrays;
  * @version 1.0
  * @since 2024/08/20 09:08
  */
-public class Candy_135 {
+public class Candy {
     public int candy(int[] ratings) {
         int n = ratings.length;
         int[] candies = new int[n];
