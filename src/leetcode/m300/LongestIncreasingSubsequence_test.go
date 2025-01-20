@@ -12,11 +12,19 @@ func Test_lengthOfLIS(t *testing.T) {
 		{"Test case 2", []int{0, 1, 0, 3, 2, 3}, 4},
 		{"Test case 3", []int{7, 7, 7, 7, 7, 7, 7}, 1},
 	}
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			if got := lengthOfLIS(tt.nums); got != tt.want {
-				t.Errorf("lengthOfLIS() = %v, want %v", got, tt.want)
-			}
-		})
+
+	solutions := []LongestIncreasingSubsequence{
+		Solution1{},
+		Solution2{},
+	}
+
+	for _, sol := range solutions {
+		for _, tt := range tests {
+			t.Run(tt.name, func(t *testing.T) {
+				if got := sol.lengthOfLIS(tt.nums); got != tt.want {
+					t.Errorf("lengthOfLIS() = %v, want %v", got, tt.want)
+				}
+			})
+		}
 	}
 }
