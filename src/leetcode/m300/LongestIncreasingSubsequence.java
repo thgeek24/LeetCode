@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2024 THGEEK.COM. All rights reserved.
+ * Copyright (c) 2024-2025 THGEEK.COM. All rights reserved.
  */
 
-package leetcode;
+package leetcode.m300;
 
 /**
  * LeetCode 300
@@ -11,10 +11,10 @@ package leetcode;
  * @version 1.0
  * @since 2024/04/02 16:06
  */
-public interface LongestIncreasingSubsequence_300 {
+public interface LongestIncreasingSubsequence {
     int lengthOfLIS(int[] nums);
 
-    class LongestIncreasingSubsequenceSol1 implements LongestIncreasingSubsequence_300 {
+    class LongestIncreasingSubsequenceSol1 implements LongestIncreasingSubsequence {
         @Override
         public int lengthOfLIS(int[] nums) {
             int[] dp = new int[nums.length];
@@ -33,7 +33,7 @@ public interface LongestIncreasingSubsequence_300 {
         }
     }
 
-    class LongestIncreasingSubsequenceSol2 implements LongestIncreasingSubsequence_300 {
+    class LongestIncreasingSubsequenceSol2 implements LongestIncreasingSubsequence {
         @Override
         public int lengthOfLIS(int[] nums) {
             int[] dp = new int[nums.length];
