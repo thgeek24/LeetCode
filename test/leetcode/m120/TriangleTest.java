@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2024 THGEEK.COM. All rights reserved.
+ * Copyright (c) 2024-2025 THGEEK.COM. All rights reserved.
  */
 
-package leetcode;
+package leetcode.m120;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,18 +14,18 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Test for {@link Triangle_120}
+ * Test for {@link Triangle}
  *
  * @author Tao Hong
  * @version 1.0
  * @since 2024/03/21 15:25
  */
-class Triangle_120Test {
-    private Triangle_120 test;
+class TriangleTest {
+    private Triangle test;
 
     @BeforeEach
     void setUp() {
-        test = new Triangle_120();
+        test = new Triangle();
     }
 
     @Test
