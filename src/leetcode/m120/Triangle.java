@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2024 THGEEK.COM. All rights reserved.
+ * Copyright (c) 2024-2025 THGEEK.COM. All rights reserved.
  */
 
-package leetcode;
+package leetcode.m120;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +14,7 @@ import java.util.List;
  * @version 1.0
  * @since 2024/03/21 15:25
  */
-public class Triangle_120 {
+public class Triangle {
     public int minimumTotal(List<List<Integer>> triangle) {
         int rowCnt = triangle.size();
         List<List<Integer>> dp = new ArrayList<>();
