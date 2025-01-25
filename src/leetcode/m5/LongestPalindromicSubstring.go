@@ -20,7 +20,7 @@ func longestPalindrome(s string) string {
 }
 
 func longest(s string, l, r int) string {
-	for l >= 0 && r < len(s) && string(s[l]) == string(s[r]) {
+	for l >= 0 && r < len(s) && s[l] == s[r] {
 		l--
 		r++
 	}
