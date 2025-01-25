@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2023 THGEEK.COM. All rights reserved.
+ * Copyright (c) 2023-2025 THGEEK.COM. All rights reserved.
  */
 
-package leetcode;
+package leetcode.m5;
 
 /**
  * LeetCode 5
@@ -11,7 +11,7 @@ package leetcode;
  * @version 1.0
  * @since 2023/12/20 11:19
  */
-public class LongestPalindromicSubstring_5 {
+public class LongestPalindromicSubstring {
     public String longestPalindrome(String s) {
         String res = "";
         for (int i = 0; i < s.length(); i++) {
@@ -29,12 +29,5 @@ public class LongestPalindromicSubstring_5 {
             r++;
         }
         return s.substring(l + 1, r);
-    }
-
-    public static void main(String[] args) {
-        String str = "babad";
-        LongestPalindromicSubstring_5 test = new LongestPalindromicSubstring_5();
-        String res = test.longestPalindrome(str);
-        System.out.println(res);
     }
 }
