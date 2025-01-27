@@ -1,4 +1,8 @@
-package leetcode;
+/*
+ * Copyright (c) 2025 THGEEK.COM. All rights reserved.
+ */
+
+package leetcode.m72;
 
 /**
  * LeetCode 72
@@ -7,7 +11,7 @@ package leetcode;
  * @version 1.0
  * @since 2023/12/12 12:14
  */
-public class EditDistance_72 {
+public class EditDistance {
     public int minDistance(String word1, String word2) {
         int m = word1.length();
         int n = word2.length();
