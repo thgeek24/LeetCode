@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2024 THGEEK.COM. All rights reserved.
+ * Copyright (c) 2024-2025 THGEEK.COM. All rights reserved.
  */
 
-package leetcode;
+package leetcode.m221;
 
 /**
  * LeetCode 221
@@ -11,7 +11,7 @@ package leetcode;
  * @version 1.0
  * @since 2024/03/21 16:39
  */
-public class MaximalSquare_221 {
+public class MaximalSquare {
     public int maximalSquare(char[][] matrix) {
         int m = matrix.length;
         int n = matrix[0].length;

@@ -1,27 +1,28 @@
 /*
- * Copyright (c) 2024 THGEEK.COM. All rights reserved.
+ * Copyright (c) 2024-2025 THGEEK.COM. All rights reserved.
  */
 
-package leetcode;
+package leetcode.m211;
 
+import leetcode.m221.MaximalSquare;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
- * Test for {@link MaximalSquare_221}
+ * Test for {@link MaximalSquare}
  *
  * @author Tao Hong
  * @version 1.0
  * @since 2024/03/21 16:40
  */
-class MaximalSquare_221Test {
-    private MaximalSquare_221 test;
+class MaximalSquareTest {
+    private MaximalSquare test;
 
     @BeforeEach
     void setUp() {
-        test = new MaximalSquare_221();
+        test = new MaximalSquare();
     }
 
     @Test
