@@ -1,14 +1,16 @@
 /*
- * Copyright (c) 2023 THGEEK.COM. All rights reserved.
+ * Copyright (c) 2018-2025 THGEEK.COM. All rights reserved.
  */
 
-package leetcode;
+package leetcode.e125;
 
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
 /**
+ * Test for {@link ValidPalindrome}
+ *
  * @author taohong on 22/09/2018
  */
 public class ValidPalindromeTest {
@@ -17,49 +19,49 @@ public class ValidPalindromeTest {
     @Test
     public void testIsPalindrome1() {
         String str1 = "A man, a plan, a canal: Panama";
-        assertEquals(true, vp.isPalindrome(str1));
+        assertTrue(vp.isPalindrome(str1));
     }
 
     @Test
     public void testIsPalindrome2() {
         String str2 = "race a car";
-        assertEquals(false, vp.isPalindrome(str2));
+        assertFalse(vp.isPalindrome(str2));
     }
 
     @Test
     public void testIsPalindrome3() {
         String str3 = "Mm";
-        assertEquals(true, vp.isPalindrome(str3));
+        assertTrue(vp.isPalindrome(str3));
     }
 
     @Test
     public void testIsPalindrome4() {
         String str4 = ".,";
-        assertEquals(true, vp.isPalindrome(str4));
+        assertTrue(vp.isPalindrome(str4));
     }
 
     @Test
     public void testIsPalindrome5() {
         String str5 = "0P";
-        assertEquals(false, vp.isPalindrome(str5));
+        assertFalse(vp.isPalindrome(str5));
     }
 
     @Test
     public void testIsPalindrome6() {
         String str5 = "  ";
-        assertEquals(true, vp.isPalindrome(str5));
+        assertTrue(vp.isPalindrome(str5));
     }
 
     @Test
     public void testIsPalindrome7() {
         String str5 = "a";
-        assertEquals(true, vp.isPalindrome(str5));
+        assertTrue(vp.isPalindrome(str5));
     }
 
     @Test
     public void testIsPalindrome8() {
         String str6 = "Zeus was deified, saw Suez.";
-        assertEquals(true, vp.isPalindrome(str6));
+        assertTrue(vp.isPalindrome(str6));
     }
 
     @Test
@@ -67,6 +69,4 @@ public class ValidPalindromeTest {
         char c = '.';
         System.out.println(vp.isAlphanumeric(c));
     }
-
-
 }

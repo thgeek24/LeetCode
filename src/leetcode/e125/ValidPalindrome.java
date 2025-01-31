@@ -1,6 +1,12 @@
-package leetcode;
+/*
+ * Copyright (c) 2018-2025 THGEEK.COM. All rights reserved.
+ */
+
+package leetcode.e125;
 
 /**
+ * LeetCode 125
+ *
  * @author taohong on 22/09/2018
  */
 public class ValidPalindrome {
