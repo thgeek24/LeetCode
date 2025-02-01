@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2024 THGEEK.COM. All rights reserved.
+ * Copyright (c) 2024-2025 THGEEK.COM. All rights reserved.
  */
 
-package leetcode;
+package leetcode.e392;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,10 +14,10 @@ import java.util.List;
  * @version 1.0
  * @since 2024/01/05 13:51
  */
-public interface IsSubsequence_392 {
+public interface IsSubsequence {
     boolean isSubsequence(String s, String t);
 
-    class Solution1 implements IsSubsequence_392 {
+    class Solution1 implements IsSubsequence {
         @Override
         public boolean isSubsequence(String s, String t) {
             int i = 0;
@@ -30,7 +30,7 @@ public interface IsSubsequence_392 {
         }
     }
 
-    class Solution2 implements IsSubsequence_392 {
+    class Solution2 implements IsSubsequence {
         // 查找左侧边界的二分查找
         private int leftBound(List<Integer> arr, int tar) {
             int lo = 0;
