@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2024 THGEEK.COM. All rights reserved.
+ * Copyright (c) 2024-2025 THGEEK.COM. All rights reserved.
  */
 
-package leetcode;
+package leetcode.m209;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,18 +10,18 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Test for {@link MinimumSizeSubarraySum_209}
+ * Test for {@link MinimumSizeSubarraySum}
  *
  * @author Tao Hong
  * @version 1.0
  * @since 2024/08/03 17:24
  */
-class MinimumSizeSubarraySum_209Test {
-    private MinimumSizeSubarraySum_209 test;
+class MinimumSizeSubarraySumTest {
+    private MinimumSizeSubarraySum test;
 
     @BeforeEach
     void setUp() {
-        test = new MinimumSizeSubarraySum_209();
+        test = new MinimumSizeSubarraySum();
     }
 
     @Test

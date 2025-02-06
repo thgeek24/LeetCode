@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2024 THGEEK.COM. All rights reserved.
+ * Copyright (c) 2024-2025 THGEEK.COM. All rights reserved.
  */
 
-package leetcode;
+package leetcode.m209;
 
 /**
  * LeetCode 209
@@ -11,7 +11,7 @@ package leetcode;
  * @version 1.0
  * @since 2024/08/03 17:20
  */
-public class MinimumSizeSubarraySum_209 {
+public class MinimumSizeSubarraySum {
     public int minSubArrayLen(int target, int[] nums) {
         int slow = 0;
         int fast = 0;
