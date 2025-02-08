@@ -58,9 +58,7 @@ func findSubstring(s string, words []string) []int {
 					// Move left by one word to look for next possibility
 					leftWord := s[left : left+wordLen]
 					currentCount[leftWord]--
-					if currentCount[leftWord] < wordCount[leftWord] {
-						countMatched--
-					}
+					countMatched--
 					left += wordLen
 				}
 			} else {
