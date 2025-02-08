@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2024 THGEEK.COM. All rights reserved.
+ * Copyright (c) 2024-2025 THGEEK.COM. All rights reserved.
  */
 
-package leetcode;
+package leetcode.m30;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,18 +14,18 @@ import java.util.stream.Collectors;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Test for {@link SubstringWithConcatenationOfAllWords_30}
+ * Test for {@link SubstringWithConcatenationOfAllWords}
  *
  * @author Tao Hong
  * @version 1.0
  * @since 2024/08/07 11:18
  */
-class SubstringWithConcatenationOfAllWords_30Test {
-    private SubstringWithConcatenationOfAllWords_30 test;
+class SubstringWithConcatenationOfAllWordsTest {
+    private SubstringWithConcatenationOfAllWords test;
 
     @BeforeEach
     void setUp() {
-        test = new SubstringWithConcatenationOfAllWords_30();
+        test = new SubstringWithConcatenationOfAllWords();
     }
 
     @Test
