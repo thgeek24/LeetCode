@@ -2,53 +2,75 @@ package m30
 
 // LeetCode 30
 func findSubstring(s string, words []string) []int {
+	result := []int{}
+
+	// Base checks
+	if len(s) == 0 || len(words) == 0 {
+		return result
+	}
+
 	wordLen := len(words[0])
-	wordCnt := len(words)
-	wordMap := make(map[string]int)
-	for _, word := range words {
-		if _, ok := wordMap[word]; ok {
-			wordMap[word]++
-		} else {
-			wordMap[word] = 1
+	totalLen := wordLen * len(words)
+	if len(s) < totalLen {
+		return result
+	}
+
+	// Build the frequency map for the words
+	wordCount := make(map[string]int)
+	for _, w := range words {
+		wordCount[w]++
+	}
+
+	// We will traverse using "wordLen" different offsets
+	for offset := 0; offset < wordLen; offset++ {
+		left := offset
+		currentCount := make(map[string]int)
+		// number of words matched in the current window
+		countMatched := 0
+
+		// Move right in steps of wordLen
+		for right := offset; right+wordLen <= len(s); right += wordLen {
+			// Extract the word from s
+			word := s[right : right+wordLen]
+			// If it's in the word map, update currentCount
+			if freq, exists := wordCount[word]; exists {
+				currentCount[word]++
+
+				// If we haven't exceeded the frequency yet, increment countMatched
+				if currentCount[word] <= freq {
+					countMatched++
+				} else {
+					// We have exceeded the frequency for this word
+					// Move left until we no longer exceed
+					for currentCount[word] > freq {
+						leftWord := s[left : left+wordLen]
+						currentCount[leftWord]--
+						if currentCount[leftWord] < wordCount[leftWord] {
+							countMatched--
+						}
+						left += wordLen
+					}
+				}
+
+				// Check if we matched all words
+				if countMatched == len(words) {
+					result = append(result, left)
+					// Move left by one word to look for next possibility
+					leftWord := s[left : left+wordLen]
+					currentCount[leftWord]--
+					if currentCount[leftWord] < wordCount[leftWord] {
+						countMatched--
+					}
+					left += wordLen
+				}
+			} else {
+				// word not in wordCount, reset window
+				currentCount = make(map[string]int)
+				countMatched = 0
+				left = right + wordLen
+			}
 		}
 	}
 
-	_wordMap := make(map[string]int)
-	for key, _ := range wordMap {
-		_wordMap[key] = 0
-	}
-	_wordCnt := 0
-	slow, fast := 0, 0
-	res := make([]int, 0)
-	for fast <= len(s)-wordLen {
-		word := s[fast : fast+wordLen]
-		if _, ok := _wordMap[word]; ok {
-			_wordCnt++
-			_wordMap[word]++
-			fast += wordLen
-
-			if _wordMap[word] == wordMap[word] && _wordCnt == wordCnt {
-				res = append(res, slow)
-				continue
-			}
-
-			for _wordMap[word] > wordMap[word] {
-				slowWord := s[slow : slow+wordCnt]
-				_wordMap[slowWord]--
-				_wordCnt--
-				slow += wordCnt
-			}
-			if _wordMap[word] == wordMap[word] && _wordCnt == wordCnt {
-				res = append(res, slow)
-			}
-		} else {
-			for key, _ := range _wordMap {
-				_wordMap[key] = 0
-			}
-			_wordCnt = 0
-			fast += wordLen
-			slow = fast
-		}
-	}
-	return res
+	return result
 }
