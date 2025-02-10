@@ -2,14 +2,12 @@
  * Copyright (c) 2024-2025 THGEEK.COM. All rights reserved.
  */
 
-package leetcode.m76;
+package leetcode.h76;
 
-import leetcode.h76.MinimumWindowSubstring;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
 
 /**
  * Test for {@link MinimumWindowSubstring}
