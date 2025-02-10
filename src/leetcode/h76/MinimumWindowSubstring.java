@@ -14,7 +14,7 @@ import java.util.Map;
  * @version 1.0
  * @since 2024/08/01 15:18
  */
-public class MinimumWindowSubstring_76 {
+public class MinimumWindowSubstring {
     public String minWindow(String s, String t) {
         Map<Character, Integer> charMap = new HashMap<>();
         for (int i = 0; i < t.length(); i++) {
