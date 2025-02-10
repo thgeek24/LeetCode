@@ -1,62 +1,61 @@
 package h76
 
-import "math"
-
-// LeetCode 76
 func minWindow(s string, t string) string {
-	target := len(t)
-	letterCount := make(map[rune]int)
-	for _, letter := range t {
-		letterCount[letter]++
+	// Edge case: if t is longer than s, return empty string
+	if len(s) < len(t) {
+		return ""
 	}
 
-	left, right, currMatched := 0, 0, 0
-	var resLeft, resRight int
-	minLen := math.MaxInt
-	currLetterCount := make(map[int32]int)
+	// Frequency map for string t
+	tFreq := make(map[byte]int)
+	for i := 0; i < len(t); i++ {
+		tFreq[t[i]]++
+	}
+
+	// Sliding window pointers and variables
+	left, right := 0, 0
+	minLen := len(s) + 1
+	minStart := 0
+	windowFreq := make(map[byte]int)
+	validCount := 0
+	requiredCount := len(tFreq)
+
+	// Sliding window
 	for right < len(s) {
-		letter := rune(s[right])
-		if freq, exists := letterCount[letter]; exists {
-			currLetterCount[letter]++
-
-			if currLetterCount[letter] <= freq {
-				currMatched++
-			} else {
-				for currLetterCount[letter] > freq {
-					leftLetter := rune(s[left])
-					if _, ok := letterCount[leftLetter]; ok {
-						currLetterCount[leftLetter]--
-						if currLetterCount[leftLetter] < letterCount[leftLetter] {
-							currMatched--
-						}
-					}
-					left++
-				}
-			}
-
-			for _, ok := letterCount[rune(s[left])]; !ok; _, ok = letterCount[rune(s[left])] {
-				left++
-			}
-
-			if currMatched == target {
-				currLen := right - left + 1
-				if minLen > currLen {
-					resLeft = left
-					resRight = right
-					minLen = currLen
-				}
-
-				currLetterCount[rune(s[left])]--
-				currMatched--
-				left++
-			}
+		// Expand the window by moving the right pointer
+		charRight := s[right]
+		windowFreq[charRight]++
+		if windowFreq[charRight] == tFreq[charRight] {
+			validCount++
 		}
 
+		// Shrink the window by moving the left pointer
+		for validCount == requiredCount && left <= right {
+			// Check if we have found a smaller window
+			windowSize := right - left + 1
+			if windowSize < minLen {
+				minLen = windowSize
+				minStart = left
+			}
+
+			// Move the left pointer to shrink the window
+			charLeft := s[left]
+			windowFreq[charLeft]--
+			if windowFreq[charLeft] < tFreq[charLeft] {
+				validCount--
+			}
+			left++
+		}
+
+		// Move the right pointer forward to explore the next character
 		right++
 	}
 
-	if minLen == math.MaxInt {
+	// If no valid window was found, return an empty string
+	if minLen == len(s)+1 {
 		return ""
 	}
-	return s[resLeft : resRight+1]
+
+	// Return the smallest valid window
+	return s[minStart : minStart+minLen]
 }
