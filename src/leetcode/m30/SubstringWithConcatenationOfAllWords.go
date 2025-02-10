@@ -2,73 +2,66 @@ package m30
 
 // LeetCode 30
 func findSubstring(s string, words []string) []int {
-	result := []int{}
-
-	// Base checks
-	if len(s) == 0 || len(words) == 0 {
-		return result
-	}
-
+	res := make([]int, 0)
 	wordLen := len(words[0])
 	totalLen := wordLen * len(words)
 	if len(s) < totalLen {
-		return result
+		return res
 	}
 
 	// Build the frequency map for the words
 	wordCount := make(map[string]int)
-	for _, w := range words {
-		wordCount[w]++
+	for _, word := range words {
+		wordCount[word]++
 	}
 
 	// We will traverse using "wordLen" different offsets
 	for offset := 0; offset < wordLen; offset++ {
-		left := offset
-		currentCount := make(map[string]int)
+		slow := offset
+		currCount := make(map[string]int)
 		// number of words matched in the current window
-		countMatched := 0
+		currMatched := 0
 
-		// Move right in steps of wordLen
-		for right := offset; right+wordLen <= len(s); right += wordLen {
+		// Move fast in steps of wordLen
+		for fast := slow; fast+wordLen <= len(s); fast += wordLen {
 			// Extract the word from s
-			word := s[right : right+wordLen]
-			// If it's in the word map, update currentCount
+			word := s[fast : fast+wordLen]
+			// If it's in the word map, update currCount
 			if freq, exists := wordCount[word]; exists {
-				currentCount[word]++
+				currCount[word]++
 
-				// If we haven't exceeded the frequency yet, increment countMatched
-				if currentCount[word] <= freq {
-					countMatched++
+				// If we haven't exceeded the frequency yet, increment currMatched
+				if currCount[word] <= freq {
+					currMatched++
 				} else {
 					// We have exceeded the frequency for this word
-					// Move left until we no longer exceed
-					for currentCount[word] > freq {
-						leftWord := s[left : left+wordLen]
-						currentCount[leftWord]--
-						if currentCount[leftWord] < wordCount[leftWord] {
-							countMatched--
+					// Move slow until we no longer exceed
+					for currCount[word] > freq {
+						slowWord := s[slow : slow+wordLen]
+						currCount[slowWord]--
+						if currCount[slowWord] < wordCount[slowWord] {
+							currMatched--
 						}
-						left += wordLen
+						slow += wordLen
 					}
 				}
 
 				// Check if we matched all words
-				if countMatched == len(words) {
-					result = append(result, left)
-					// Move left by one word to look for next possibility
-					leftWord := s[left : left+wordLen]
-					currentCount[leftWord]--
-					countMatched--
-					left += wordLen
+				if currMatched == len(words) {
+					res = append(res, slow)
+					// Move slow by one word to look for next possibility
+					slowWord := s[slow : slow+wordLen]
+					currCount[slowWord]--
+					currMatched--
+					slow += wordLen
 				}
 			} else {
 				// word not in wordCount, reset window
-				currentCount = make(map[string]int)
-				countMatched = 0
-				left = right + wordLen
+				currCount = make(map[string]int)
+				currMatched = 0
+				slow = fast + wordLen
 			}
 		}
 	}
-
-	return result
+	return res
 }
