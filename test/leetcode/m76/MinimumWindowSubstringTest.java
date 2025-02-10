@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 2024 THGEEK.COM. All rights reserved.
+ * Copyright (c) 2024-2025 THGEEK.COM. All rights reserved.
  */
 
-package leetcode;
+package leetcode.m76;
 
-import leetcode.h76.MinimumWindowSubstring_76;
+import leetcode.h76.MinimumWindowSubstring;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -12,18 +12,18 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 /**
- * Test for {@link MinimumWindowSubstring_76}
+ * Test for {@link MinimumWindowSubstring}
  *
  * @author Tao Hong
  * @version 1.0
  * @since 2024/08/01 15:43
  */
-class MinimumWindowSubstring_76Test {
-    private MinimumWindowSubstring_76 test;
+class MinimumWindowSubstringTest {
+    private MinimumWindowSubstring test;
 
     @BeforeEach
     void setUp() {
-        test = new MinimumWindowSubstring_76();
+        test = new MinimumWindowSubstring();
     }
 
     @Test
