@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2024 THGEEK.COM. All rights reserved.
+ * Copyright (c) 2024-2025 THGEEK.COM. All rights reserved.
  */
 
-package leetcode;
+package leetcode.e205;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -15,7 +15,7 @@ import java.util.Objects;
  * @version 1.0
  * @since 2024/08/27 16:41
  */
-public class IsomorphicStrings_205 {
+public class IsomorphicStrings {
     public boolean isIsomorphic(String s, String t) {
         if (s.length() != t.length()) {
             return false;
