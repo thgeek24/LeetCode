@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2024 THGEEK.COM. All rights reserved.
+ * Copyright (c) 2024-2025 THGEEK.COM. All rights reserved.
  */
 
-package leetcode;
+package leetcode.e290;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,12 +14,12 @@ import static org.junit.jupiter.api.Assertions.*;
  * @version 1.0
  * @since 2024/08/27 14:00
  */
-class WordPattern_290Test {
-    private WordPattern_290 test;
+class WordPatternTest {
+    private WordPattern test;
 
     @BeforeEach
     void setUp() {
-        test = new WordPattern_290();
+        test = new WordPattern();
     }
 
     @Test
