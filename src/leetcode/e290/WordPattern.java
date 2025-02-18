@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2024 THGEEK.COM. All rights reserved.
+ * Copyright (c) 2024-2025 THGEEK.COM. All rights reserved.
  */
 
-package leetcode;
+package leetcode.e290;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -14,7 +14,7 @@ import java.util.Map;
  * @version 1.0
  * @since 2024/08/27 12:38
  */
-public class WordPattern_290 {
+public class WordPattern {
     public boolean wordPattern(String pattern, String s) {
         String[] words = s.split(" ");
         if (words.length != pattern.length()) {
