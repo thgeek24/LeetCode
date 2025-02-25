@@ -13,17 +13,16 @@ func summaryRanges(nums []int) []string {
 	for i := 0; i < len(nums)-1; i++ {
 		curr := nums[i]
 		next := nums[i+1]
-		if curr == next-1 {
-			continue
+		if curr != next-1 {
+			if curr == start {
+				res = append(res, strconv.Itoa(start))
+			} else {
+				res = append(res, strconv.Itoa(start)+"->"+strconv.Itoa(curr))
+			}
+			start = next
 		}
-
-		if curr == start {
-			res = append(res, strconv.Itoa(start))
-		} else {
-			res = append(res, strconv.Itoa(start)+"->"+strconv.Itoa(curr))
-		}
-		start = next
 	}
+
 	if start == nums[len(nums)-1] {
 		res = append(res, strconv.Itoa(start))
 	} else {
