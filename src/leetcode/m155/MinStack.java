@@ -4,7 +4,6 @@
 
 package leetcode.m155;
 
-import java.util.PriorityQueue;
 import java.util.Stack;
 
 /**
@@ -16,21 +15,25 @@ import java.util.Stack;
  */
 public class MinStack {
     private final Stack<Integer> stack;
-    private final PriorityQueue<Integer> queue;
+    private final Stack<Integer> minStack;
 
     public MinStack() {
         this.stack = new Stack<>();
-        this.queue = new PriorityQueue<>();
+        this.minStack = new Stack<>();
     }
 
     public void push(int val) {
         stack.push(val);
-        queue.add(val);
+        if (minStack.isEmpty() || val < minStack.peek()) {
+            minStack.push(val);
+        } else {
+            minStack.push(minStack.peek());
+        }
     }
 
     public void pop() {
-        Integer popped = stack.pop();
-        queue.remove(popped);
+        stack.pop();
+        minStack.pop();
     }
 
     public int top() {
@@ -38,6 +41,6 @@ public class MinStack {
     }
 
     public int getMin() {
-        return queue.peek();
+        return minStack.peek();
     }
 }
