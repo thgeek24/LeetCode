@@ -4,24 +4,25 @@
 
 package leetcode;
 
+import leetcode.m1091.ShortestPathInBinaryMatrix;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Test for {@link ShortestPathInBinaryMatrix_1091}
+ * Test for {@link ShortestPathInBinaryMatrix}
  *
  * @author Tao Hong
  * @version 1.0
  * @since 2024/07/11 21:10
  */
-class ShortestPathInBinaryMatrix_1091Test {
-    private ShortestPathInBinaryMatrix_1091 test;
+class ShortestPathInBinaryMatrixTest {
+    private ShortestPathInBinaryMatrix test;
 
     @BeforeEach
     void setUp() {
-        test = new ShortestPathInBinaryMatrix_1091();
+        test = new ShortestPathInBinaryMatrix();
     }
 
     @Test

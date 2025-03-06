@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2024 THGEEK.COM. All rights reserved.
+ * Copyright (c) 2024-2025 THGEEK.COM. All rights reserved.
  */
 
-package leetcode;
+package leetcode.m1091;
 
 import java.util.LinkedList;
 import java.util.Queue;
@@ -14,7 +14,7 @@ import java.util.Queue;
  * @version 1.0
  * @since 2024/07/11 21:09
  */
-public class ShortestPathInBinaryMatrix_1091 {
+public class ShortestPathInBinaryMatrix {
     public int shortestPathBinaryMatrix(int[][] grid) {
         int n = grid.length;
         if (grid[0][0] != 0 || grid[n - 1][n - 1] != 0) {
