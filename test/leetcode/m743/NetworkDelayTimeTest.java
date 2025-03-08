@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2024 THGEEK.COM. All rights reserved.
+ * Copyright (c) 2024-2025 THGEEK.COM. All rights reserved.
  */
 
-package leetcode;
+package leetcode.m743;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,18 +10,18 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Test for {@link NetworkDelayTime_743}
+ * Test for {@link NetworkDelayTime}
  *
  * @author Tao Hong
  * @version 1.0
  * @since 2024/07/20 03:11
  */
-class NetworkDelayTime_743Test {
-    private NetworkDelayTime_743 test;
+class NetworkDelayTimeTest {
+    private NetworkDelayTime test;
 
     @BeforeEach
     void setUp() {
-        test = new NetworkDelayTime_743();
+        test = new NetworkDelayTime();
     }
 
     @Test
