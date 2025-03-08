@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2024 THGEEK.COM. All rights reserved.
+ * Copyright (c) 2024-2025 THGEEK.COM. All rights reserved.
  */
 
-package leetcode;
+package leetcode.m743;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -16,7 +16,7 @@ import java.util.Queue;
  * @version 1.0
  * @since 2024/07/19 02:55
  */
-public class NetworkDelayTime_743 {
+public class NetworkDelayTime {
     public int networkDelayTime(int[][] times, int n, int k) {
         int[] timeSpent = new int[n + 1];
         for (int i = 0; i <= n; i++) {
