@@ -2,7 +2,7 @@
  * Copyright (c) 2024-2025 THGEEK.COM. All rights reserved.
  */
 
-package leetcode.m30;
+package leetcode.h30;
 
 import java.util.ArrayList;
 import java.util.List;
