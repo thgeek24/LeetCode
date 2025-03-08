@@ -36,7 +36,7 @@ public class SubstringWithConcatenationOfAllWords {
             int count = 0;
             Map<String, Integer> seenMap = new HashMap<>();
 
-            while (right + wordLength <= s.length()) {
+            while (right <= s.length() - wordLength) {
                 // Get the next word from the right end
                 String word = s.substring(right, right + wordLength);
                 right += wordLength;
