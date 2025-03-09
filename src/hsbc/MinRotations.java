@@ -15,6 +15,27 @@ package hsbc;
  */
 public class MinRotations {
     public int minRotations(String firstString, String secondString) {
-        return 0;
+        int len = firstString.length();
+        String secondSecond = secondString + secondString;
+        int maxPrefix = 0;
+        int minRotations = 0;
+        for (int k = 0; k < len; k++) {
+            int currPrefix = 0;
+            for (int i = 0; i < len; i++) {
+                if (firstString.charAt(i) == secondSecond.charAt(i + k)) {
+                    currPrefix++;
+                } else {
+                    break;
+                }
+            }
+            int rotations = Math.min(k, len - k);
+            if (maxPrefix < currPrefix) {
+                maxPrefix = currPrefix;
+                minRotations = rotations;
+            } else if (maxPrefix == currPrefix) {
+                minRotations = Math.min(minRotations, rotations);
+            }
+        }
+        return minRotations;
     }
 }
