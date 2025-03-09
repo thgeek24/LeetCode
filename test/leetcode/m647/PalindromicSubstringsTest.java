@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2024 THGEEK.COM. All rights reserved.
+ * Copyright (c) 2024-2025 THGEEK.COM. All rights reserved.
  */
 
-package leetcode;
+package leetcode.m647;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,18 +10,18 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Test for {@link PalindromicSubstrings_647}
+ * Test for {@link PalindromicSubstrings}
  *
  * @author Tao Hong
  * @version 1.0
  * @since 2024/03/09 12:04
  */
-class PalindromicSubstrings_647Test {
-    private PalindromicSubstrings_647 test;
+class PalindromicSubstringsTest {
+    private PalindromicSubstrings test;
 
     @BeforeEach
     void setUp() {
-        test = new PalindromicSubstrings_647();
+        test = new PalindromicSubstrings();
     }
 
     @Test

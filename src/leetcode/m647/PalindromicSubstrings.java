@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2024 THGEEK.COM. All rights reserved.
+ * Copyright (c) 2024-2025 THGEEK.COM. All rights reserved.
  */
 
-package leetcode;
+package leetcode.m647;
 
 /**
  * LeetCode 647
@@ -11,7 +11,7 @@ package leetcode;
  * @version 1.0
  * @since 2024/03/09 12:02
  */
-public class PalindromicSubstrings_647 {
+public class PalindromicSubstrings {
     public int countSubstrings(String s) {
         int len = s.length();
         boolean[][] dp = new boolean[len][len];

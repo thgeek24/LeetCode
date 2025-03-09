@@ -23,7 +23,7 @@ func findSubstring(s string, words []string) []int {
 		currMatched := 0
 
 		// Move fast in steps of wordLen
-		for fast := slow; fast+wordLen <= len(s); fast += wordLen {
+		for fast := slow; fast <= len(s)-wordLen; fast += wordLen {
 			// Extract the word from s
 			word := s[fast : fast+wordLen]
 			// If it's in the word map, update currCount

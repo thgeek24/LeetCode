@@ -26,8 +26,8 @@ class LongestIncreasingSubsequenceTest {
     @BeforeEach
     void setUp() {
         solutions = Arrays.asList(
-                new LongestIncreasingSubsequence.LongestIncreasingSubsequenceSol1(),
-                new LongestIncreasingSubsequence.LongestIncreasingSubsequenceSol2());
+                new LongestIncreasingSubsequence.Solution1(),
+                new LongestIncreasingSubsequence.Solution2());
     }
 
     @Test
