@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2024 THGEEK.COM. All rights reserved.
+ * Copyright (c) 2024-2025 THGEEK.COM. All rights reserved.
  */
 
-package leetcode;
+package leetcode.m787;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,18 +10,18 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Test for {@link CheapestFlightsWithinKStops_787}
+ * Test for {@link CheapestFlightsWithinKStops}
  *
  * @author Tao Hong
  * @version 1.0
  * @since 2024/07/26 15:12
  */
-class CheapestFlightsWithinKStops_787Test {
-    private CheapestFlightsWithinKStops_787 test;
+class CheapestFlightsWithinKStopsTest {
+    private CheapestFlightsWithinKStops test;
 
     @BeforeEach
     void setUp() {
-        test = new CheapestFlightsWithinKStops_787();
+        test = new CheapestFlightsWithinKStops();
     }
 
     @Test
