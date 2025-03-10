@@ -29,7 +29,6 @@ func coinChange(coins []int, amount int) int {
 func minInt(a, b int) int {
 	if a < b {
 		return a
-	} else {
-		return b
 	}
+	return b
 }
