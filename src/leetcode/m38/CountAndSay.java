@@ -1,4 +1,8 @@
-package leetcode;
+/*
+ * Copyright (c) 2025 THGEEK.COM. All rights reserved.
+ */
+
+package leetcode.m38;
 
 public class CountAndSay {
     public String countAndSay(int n) {
@@ -27,11 +31,5 @@ public class CountAndSay {
             }
         }
         return tmpRes;
-    }
-
-    public static void main(String[] args) {
-        CountAndSay cs = new CountAndSay();
-        System.out.println(cs.countAndSay(9));
-        System.out.println(cs.countString("111"));
     }
 }
