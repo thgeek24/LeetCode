@@ -2,31 +2,26 @@ package m38
 
 import (
 	"strconv"
-	"strings"
 )
 
 // LeetCode 38
 func countAndSay(n int) string {
-	res := "1"
-	for i := 1; i < n; i++ {
-		res = countString(res)
+	if n == 1 {
+		return "1"
 	}
-	return res
-}
 
-func countString(n string) string {
-	builder := make([]string, 0)
-	digit := n[len(n)-1]
+	prev := countAndSay(n - 1)
+	result := ""
 	count := 1
-	for i := len(n) - 2; i >= 0; i-- {
-		if n[i] == digit {
+
+	for i := 1; i < len(prev); i++ {
+		if prev[i] == prev[i-1] {
 			count++
 		} else {
-			builder = append([]string{strconv.Itoa(count), string(digit)}, builder...)
-			digit = n[i]
+			result += strconv.Itoa(count) + string(prev[i-1])
 			count = 1
 		}
 	}
-	builder = append([]string{strconv.Itoa(count), string(digit)}, builder...)
-	return strings.Join(builder, "")
+	result += strconv.Itoa(count) + string(prev[len(prev)-1])
+	return result
 }
