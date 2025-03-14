@@ -66,7 +66,7 @@ public class BasicCalculator {
     }
 
     private void pushIntString(StringBuilder sb, Stack<String> stack) {
-        if (sb.length() > 0) {
+        if (!sb.isEmpty()) {
             stack.push(sb.toString());
             sb.setLength(0);
         }
