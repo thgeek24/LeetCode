@@ -44,9 +44,9 @@ class LinkedListCycleTest {
 
     @Test
     void test3() {
-        int[] nodes = {3, 2, 0, -4};
+        int[] nodes = {1};
         ListNode head = ListNodeGenerator.getListNode(nodes);
-        int pos = 1;
-        assertTrue(test.hasCycle(head));
+        int pos = -1;
+        assertFalse(test.hasCycle(head));
     }
 }
