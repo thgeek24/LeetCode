@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 2023 THGEEK.COM. All rights reserved.
+ * Copyright (c) 2023-2025 THGEEK.COM. All rights reserved.
  */
 
-package leetcode;
+package leetcode.e20;
 
-import java.util.*;
+import java.util.Stack;
 
 /**
  * LeetCode 20
@@ -27,11 +27,5 @@ public class ValidParentheses {
             }
         }
         return (parenStack.empty());
-    }
-
-    public static void main(String[] args) {
-        ValidParentheses vp = new ValidParentheses();
-        System.out.println(args[0]);
-        System.out.println(vp.isValid(args[0]));
     }
 }

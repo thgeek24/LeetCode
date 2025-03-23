@@ -14,7 +14,7 @@ package leetcode.m300;
 public interface LongestIncreasingSubsequence {
     int lengthOfLIS(int[] nums);
 
-    class LongestIncreasingSubsequenceSol1 implements LongestIncreasingSubsequence {
+    class Solution1 implements LongestIncreasingSubsequence {
         @Override
         public int lengthOfLIS(int[] nums) {
             int[] dp = new int[nums.length];
@@ -33,7 +33,7 @@ public interface LongestIncreasingSubsequence {
         }
     }
 
-    class LongestIncreasingSubsequenceSol2 implements LongestIncreasingSubsequence {
+    class Solution2 implements LongestIncreasingSubsequence {
         @Override
         public int lengthOfLIS(int[] nums) {
             int[] dp = new int[nums.length];
