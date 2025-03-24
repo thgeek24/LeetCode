@@ -26,12 +26,24 @@ class ReverseNodesInKGroupTest {
 
     @BeforeEach
     void setUp() {
-        tests = Arrays.asList(new ReverseNodesInKGroup.Solution1(),
-                new ReverseNodesInKGroup.Solution2());
+        tests = Arrays.asList(
+//                new ReverseNodesInKGroup.Solution1(),
+//                new ReverseNodesInKGroup.Solution2());
+                new ReverseNodesInKGroup.Solution3());
     }
 
     @Test
     void test1() {
+        ListNode expected = ListNodeGenerator.getListNode(new int[]{2, 1, 4, 3, 5});
+        tests.forEach(item -> {
+            ListNode head = ListNodeGenerator.getListNode(new int[]{1, 2, 3, 4, 5});
+            ListNode actual = item.reverseKGroup(head, 2);
+            assertEquals(expected, actual);
+        });
+    }
+
+    @Test
+    void test2() {
         ListNode expected = ListNodeGenerator.getListNode(new int[]{3, 2, 1, 4, 5});
         tests.forEach(item -> {
             ListNode head = ListNodeGenerator.getListNode(new int[]{1, 2, 3, 4, 5});

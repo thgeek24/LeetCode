@@ -85,4 +85,59 @@ public interface ReverseNodesInKGroup {
             return pre;
         }
     }
+
+    class Solution3 implements ReverseNodesInKGroup {
+        @Override
+        public ListNode reverseKGroup(ListNode head, int k) {
+            int len = 0;
+            ListNode curr = head;
+            while (curr != null) {
+                len++;
+                curr = curr.next;
+            }
+
+            int groupTotal = len / k;
+            ListNode resHead = null;
+            ListNode prev = null;
+            ListNode tempCurr = null;
+            curr = head;
+            for (int i = 0; i < groupTotal; i++) {
+                tempCurr = getNodeAt(curr, 0, k);
+                ListNode reversed = reverse(null, curr, 1, k);
+                if (resHead == null) {
+                    resHead = reversed;
+                }
+                if (prev != null) {
+                    prev.next = reversed;
+                }
+                while (reversed.next != null) {
+                    reversed = reversed.next;
+                }
+                prev = reversed;
+                curr = tempCurr;
+            }
+            if (prev != null) {
+                prev.next = curr;
+            }
+
+            return resHead;
+        }
+
+        private ListNode reverse(ListNode prev, ListNode curr, int currCount, int endCount) {
+            if (currCount == endCount) {
+                curr.next = prev;
+                return curr;
+            }
+            ListNode next = curr.next;
+            curr.next = prev;
+            return reverse(curr, next, currCount + 1, endCount);
+        }
+
+        private ListNode getNodeAt(ListNode curr, int currIndex, int targetIndex) {
+            if (currIndex == targetIndex) {
+                return curr;
+            }
+            return getNodeAt(curr.next, currIndex + 1, targetIndex);
+        }
+    }
 }
