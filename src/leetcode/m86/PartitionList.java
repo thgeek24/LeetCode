@@ -25,10 +25,10 @@ public class PartitionList {
         // Traverse the original list
         while (head != null) {
             if (head.val < x) {
-                before.next = head;   // Add to the "before" list
+                before.next = new ListNode(head.val);   // Add to the "before" list
                 before = before.next;
             } else {
-                after.next = head;    // Add to the "after" list
+                after.next = new ListNode(head.val);    // Add to the "after" list
                 after = after.next;
             }
             head = head.next;
