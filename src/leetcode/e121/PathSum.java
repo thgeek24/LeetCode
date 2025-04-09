@@ -1,8 +1,10 @@
 /*
- * Copyright (c) 2024 THGEEK.COM. All rights reserved.
+ * Copyright (c) 2024-2025 THGEEK.COM. All rights reserved.
  */
 
-package leetcode;
+package leetcode.e121;
+
+import leetcode.TreeNode;
 
 /**
  * LeetCode 112
@@ -11,7 +13,7 @@ package leetcode;
  * @version 1.0
  * @since 2024/08/26 10:55
  */
-public class PathSum_112 {
+public class PathSum {
     public boolean hasPathSum(TreeNode root, int targetSum) {
         if (root == null) {
             return false;
