@@ -2,7 +2,7 @@
  * Copyright (c) 2024-2025 THGEEK.COM. All rights reserved.
  */
 
-package leetcode.e121;
+package leetcode.e112;
 
 import leetcode.TreeNode;
 
