@@ -1,27 +1,28 @@
 /*
- * Copyright (c) 2024 THGEEK.COM. All rights reserved.
+ * Copyright (c) 2024-2025 THGEEK.COM. All rights reserved.
  */
 
-package leetcode;
+package leetcode.e222;
 
+import leetcode.TreeNode;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
- * Test for {@link CountCompleteTreeNodes_222}
+ * Test for {@link CountCompleteTreeNodes}
  *
  * @author Tao Hong
  * @version 1.0
  * @since 2024/08/24 22:35
  */
-class CountCompleteTreeNodes_222Test {
-    private CountCompleteTreeNodes_222 test;
+class CountCompleteTreeNodesTest {
+    private CountCompleteTreeNodes test;
 
     @BeforeEach
     void setUp() {
-        test = new CountCompleteTreeNodes_222();
+        test = new CountCompleteTreeNodes();
     }
 
     @Test
