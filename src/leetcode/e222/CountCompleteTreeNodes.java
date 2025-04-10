@@ -1,8 +1,10 @@
 /*
- * Copyright (c) 2024 THGEEK.COM. All rights reserved.
+ * Copyright (c) 2024-2025 THGEEK.COM. All rights reserved.
  */
 
-package leetcode;
+package leetcode.e222;
+
+import leetcode.TreeNode;
 
 /**
  * LeetCode 222
@@ -11,7 +13,7 @@ package leetcode;
  * @version 1.0
  * @since 2024/08/24 18:30
  */
-public class CountCompleteTreeNodes_222 {
+public class CountCompleteTreeNodes {
     public int countNodes(TreeNode root) {
         if (root == null) {
             return 0;
