@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2024 THGEEK.COM. All rights reserved.
+ * Copyright (c) 2024-2025 THGEEK.COM. All rights reserved.
  */
 
-package leetcode;
+package leetcode.e35;
 
 /**
  * LeetCode 35
@@ -11,7 +11,7 @@ package leetcode;
  * @version 1.0
  * @since 2024/08/18 20:56
  */
-public class SearchInsertPosition_35 {
+public class SearchInsertPosition {
     public int searchInsert(int[] nums, int target) {
         int left = 0;
         int right = nums.length - 1;

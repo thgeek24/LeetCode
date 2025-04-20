@@ -1,8 +1,10 @@
 /*
- * Copyright (c) 2024 THGEEK.COM. All rights reserved.
+ * Copyright (c) 2024-2025 THGEEK.COM. All rights reserved.
  */
 
-package leetcode;
+package leetcode.e226;
+
+import leetcode.TreeNode;
 
 /**
  * LeetCode 226
@@ -11,7 +13,7 @@ package leetcode;
  * @version 1.0
  * @since 2024/08/25 20:44
  */
-public class InvertBinaryTree_226 {
+public class InvertBinaryTree {
     public TreeNode invertTree(TreeNode root) {
         if (root == null) {
             return null;

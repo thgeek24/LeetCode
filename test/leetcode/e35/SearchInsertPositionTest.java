@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2024 THGEEK.COM. All rights reserved.
+ * Copyright (c) 2024-2025 THGEEK.COM. All rights reserved.
  */
 
-package leetcode;
+package leetcode.e35;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,18 +10,18 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Test for {@link SearchInsertPosition_35}
+ * Test for {@link SearchInsertPosition}
  *
  * @author Tao Hong
  * @version 1.0
  * @since 2024/08/18 21:03
  */
-class SearchInsertPosition_35Test {
-    private SearchInsertPosition_35 test;
+class SearchInsertPositionTest {
+    private SearchInsertPosition test;
 
     @BeforeEach
     void setUp() {
-        test = new SearchInsertPosition_35();
+        test = new SearchInsertPosition();
     }
 
     @Test
