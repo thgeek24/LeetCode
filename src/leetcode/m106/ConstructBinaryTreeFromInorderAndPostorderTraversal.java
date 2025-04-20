@@ -57,4 +57,39 @@ public interface ConstructBinaryTreeFromInorderAndPostorderTraversal {
             return root;
         }
     }
+
+    class Solution2 implements ConstructBinaryTreeFromInorderAndPostorderTraversal {
+        private Map<Integer, Integer> inMap;
+        private int[] postorder;
+        private int pIndex;
+
+        @Override
+        public TreeNode buildTree(int[] inorder, int[] postorder) {
+            init(inorder, postorder);
+            return buildTree(0, inorder.length - 1);
+        }
+
+        private void init(int[] inorder, int[] postorder) {
+            this.postorder = postorder;
+            this.pIndex = postorder.length - 1;
+            this.inMap = new HashMap<>();
+            for (int i = 0; i < inorder.length; i++) {
+                inMap.put(inorder[i], i);
+            }
+        }
+
+        private TreeNode buildTree(int left, int right) {
+            if (left > right) {
+                return null;
+            }
+            int rootVal = postorder[pIndex];
+            pIndex--;
+
+            int index = inMap.get(rootVal);
+            TreeNode root = new TreeNode(rootVal);
+            root.right = buildTree(index + 1, right);
+            root.left = buildTree(left, index - 1);
+            return root;
+        }
+    }
 }
