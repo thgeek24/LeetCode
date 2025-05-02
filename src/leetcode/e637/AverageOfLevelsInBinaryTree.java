@@ -1,8 +1,10 @@
 /*
- * Copyright (c) 2024 THGEEK.COM. All rights reserved.
+ * Copyright (c) 2024-2025 THGEEK.COM. All rights reserved.
  */
 
-package leetcode;
+package leetcode.e637;
+
+import leetcode.TreeNode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +16,7 @@ import java.util.List;
  * @version 1.0
  * @since 2024/08/24 09:36
  */
-public class AverageOfLevelsInBinaryTree_637 {
+public class AverageOfLevelsInBinaryTree {
     private List<List<Long>> nums;
 
     public List<Double> averageOfLevels(TreeNode root) {
