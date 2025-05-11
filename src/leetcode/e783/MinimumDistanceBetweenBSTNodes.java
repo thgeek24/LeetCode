@@ -1,18 +1,21 @@
 /*
- * Copyright (c) 2024 THGEEK.COM. All rights reserved.
+ * Copyright (c) 2024-2025 THGEEK.COM. All rights reserved.
  */
 
-package leetcode;
+package leetcode.e783;
+
+import leetcode.TreeNode;
+import leetcode.e530.MinimumAbsoluteDifferenceInBST;
 
 /**
  * LeetCode 783
- * Similar to {@link MinimumAbsoluteDifferenceInBST_530}
+ * Similar to {@link MinimumAbsoluteDifferenceInBST}
  *
  * @author Tao Hong
  * @version 1.0
  * @since 2024/08/23 21:27
  */
-public class MinimumDistanceBetweenBSTNodes_783 {
+public class MinimumDistanceBetweenBSTNodes {
     private Integer prev;
     private int min;
 

@@ -1,8 +1,10 @@
 /*
- * Copyright (c) 2024 THGEEK.COM. All rights reserved.
+ * Copyright (c) 2024-2025 THGEEK.COM. All rights reserved.
  */
 
-package leetcode;
+package leetcode.e530;
+
+import leetcode.TreeNode;
 
 /**
  * LeetCode 530
@@ -11,7 +13,7 @@ package leetcode;
  * @version 1.0
  * @since 2024/08/23 19:45
  */
-public class MinimumAbsoluteDifferenceInBST_530 {
+public class MinimumAbsoluteDifferenceInBST {
     private Integer prev;
     private int minDiff;
 
